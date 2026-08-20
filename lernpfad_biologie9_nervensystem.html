@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lernpfad Biologie 9 – Bau und Funktion des Nervensystems</title>
+<style>
+  :root{
+    --ink:#1f2937; --muted:#5b6472; --paper:#ffffff; --bg:#f4f8f5;
+    --nav:#123524; --nav2:#1d5a3b; --accent:#4f8f35; --accent2:#7bbf45;
+    --green:#287a59; --teal:#1f7a74; --blue:#4e86b8; --orange:#c46b1a;
+    --red:#b23a3a; --purple:#7653a6; --line:#d8e5dc; --soft:#eef7f0;
+    --soft-warm:#fff7e8; --shadow:0 10px 28px rgba(18,53,36,.10);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.58}
+  button,input,select{font:inherit}
+  .app{min-height:100vh;display:grid;grid-template-columns:290px 1fr}
+  aside{background:linear-gradient(180deg,var(--nav),var(--nav2));color:#fff;padding:24px 18px;position:sticky;top:0;height:100vh;overflow:auto}
+  .brand{display:flex;gap:12px;align-items:center;margin:0 4px 22px}
+  .bioicon{width:42px;height:42px;border-radius:13px;background:linear-gradient(145deg,#d8f3c2,#78bd54 58%,#2e7d4b);display:grid;place-items:center;box-shadow:0 4px 16px rgba(0,0,0,.2);font-size:24px}
+  .brand h1{font-size:1rem;line-height:1.2;margin:0}.brand small{display:block;color:#d2e6d8;margin-top:4px;font-weight:500}
+  .progress-wrap{margin:0 4px 18px}.progress-label{font-size:.78rem;color:#dceadf;display:flex;justify-content:space-between}.progress-track{height:7px;background:rgba(255,255,255,.18);border-radius:999px;overflow:hidden;margin-top:6px}.progress-bar{height:100%;width:0;background:#a8dc78;transition:width .25s ease}
+  .nav-list{display:grid;gap:5px}.nav-btn{border:0;width:100%;text-align:left;color:#edf7ef;background:transparent;padding:10px 12px;border-radius:10px;cursor:pointer;display:flex;gap:10px;align-items:flex-start}.nav-btn:hover,.nav-btn.active{background:rgba(255,255,255,.12)}.nav-num{width:24px;height:24px;flex:0 0 24px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.12);font-size:.76rem;font-weight:700}.nav-btn.done .nav-num{background:#b8e08f;color:#1c492a}.nav-text{font-size:.88rem;line-height:1.25;padding-top:2px}
+  .side-note{font-size:.75rem;color:#c7ddcd;margin:22px 6px 0}
+  main{padding:38px clamp(20px,5vw,72px) 58px;max-width:1180px;width:100%;margin:0 auto}
+  .page{display:none;animation:fade .22s ease}.page.active{display:block}@keyframes fade{from{opacity:.25;transform:translateY(4px)}to{opacity:1;transform:none}}
+  .kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.12em;color:#34774d;font-weight:800;margin-bottom:8px}
+  h2{font-size:clamp(1.85rem,4vw,3rem);line-height:1.08;margin:.05em 0 .4em;color:#173f2a;letter-spacing:-.025em}
+  h3{font-size:1.22rem;margin:1.7em 0 .5em;color:#225b3a}
+  h4{font-size:1rem;margin:1.15em 0 .4em}
+  .lead{font-size:1.08rem;color:#465464;max-width:860px}
+  .hero{background:linear-gradient(135deg,#fff 0,#fff 68%,#eaf7e4 100%);border:1px solid var(--line);border-radius:22px;padding:clamp(24px,5vw,52px);box-shadow:var(--shadow);position:relative;overflow:hidden}.hero:after{content:"⚡";position:absolute;right:24px;bottom:-36px;font-size:146px;color:rgba(79,143,53,.07);transform:rotate(-8deg)}
+  .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:18px 0}.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:15px;padding:18px;box-shadow:0 4px 14px rgba(18,53,36,.045)}
+  .card h3,.card h4{margin-top:0}.card p:last-child{margin-bottom:0}
+  .goal{border-left:5px solid var(--accent);background:#f1f9f2}.goal ul{margin-bottom:0}
+  .warm{border-left:5px solid var(--orange);background:var(--soft-warm)}
+  .tip{border-left:5px solid var(--teal);background:#eef8f6}
+  .warn{border-left:5px solid var(--red);background:#fff2f2}
+  .info{border-left:5px solid var(--blue);background:#eef5fb}
+  .purple{border-left:5px solid var(--purple);background:#f5f0fb}
+  .term{display:inline-block;background:#e5f3e8;color:#205d36;padding:.08rem .42rem;border-radius:.38rem;font-weight:700}
+  .equation{font-size:1.04rem;font-weight:750;text-align:center;background:#f7faf8;border:1px solid var(--line);padding:12px 14px;border-radius:12px;margin:12px 0;letter-spacing:.01em}
+  table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;display:table}th,td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}th{background:#edf5ef;color:#214d31}tr:last-child td{border-bottom:0}
+  .mini-task{background:#fff;border:1px solid #cfded3;border-radius:15px;padding:18px;margin:18px 0}.mini-task h3{margin-top:0;color:#6b5010}.task-label{display:inline-block;font-size:.75rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#6c5a0d;background:#f5efc8;border-radius:99px;padding:4px 9px;margin-bottom:8px}
+  details{margin-top:12px;border-top:1px dashed #c7d7cb;padding-top:10px}summary{cursor:pointer;color:#286d44;font-weight:700}details p:last-child,details ul:last-child{margin-bottom:0}
+  .checklist label{display:block;padding:7px 0}.checklist input{accent-color:var(--green);margin-right:8px}
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:28px}.pager button,.mark-btn{border:0;border-radius:10px;padding:10px 15px;cursor:pointer;font-weight:700}.pager button{background:#225b3a;color:#fff}.pager button:disabled{opacity:.32;cursor:default}.mark-btn{background:#e7f4eb;color:#1f6940;margin-top:16px}.mark-btn.done{background:#2f7d4e;color:white}
+  .see-also{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);font-style:italic;color:#65716a}
+  .pillrow{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.pill{background:#edf6ef;border:1px solid #d3e6d7;color:#245a35;border-radius:99px;padding:5px 10px;font-size:.84rem;font-weight:650}
+  .selftest .q{padding:16px 0;border-bottom:1px solid var(--line)}.selftest .q:last-child{border-bottom:0}.selftest strong{color:#23563a}
+  .small{font-size:.86rem;color:#68746d}
+  .top-mobile{display:none}
+
+  .flow{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:18px 0;padding:18px;background:#f8fbf8;border:1px solid var(--line);border-radius:16px}
+  .flowbox{background:#fff;border:1px solid #cfe0d3;border-radius:12px;padding:10px 14px;text-align:center;min-width:118px;font-weight:700;color:#245a35}.flowarrow{font-size:1.35rem;color:#5f8f69;font-weight:900}
+  .neuron{background:#fbfdfb;border:1px solid var(--line);border-radius:16px;padding:10px;margin:18px 0}.neuron svg{display:block;width:100%;height:auto;max-height:330px}
+  .ns-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:18px 0}.ns-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px}.ns-card h4{margin-top:0;color:#225b3a}.ns-card:nth-child(1){border-top:5px solid #4f8f35}.ns-card:nth-child(2){border-top:5px solid #4e86b8}.ns-card:nth-child(3){border-top:5px solid #c46b1a}
+  .reflex{background:#fbfdfb;border:1px solid var(--line);border-radius:16px;padding:14px;margin:18px 0}.reflex svg{display:block;width:100%;height:auto;max-height:300px}
+  .sense-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0}.sense{background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px}.sense strong{display:block;color:#245a35;margin-bottom:4px}
+  .eye{background:#fbfdfb;border:1px solid var(--line);border-radius:16px;padding:12px;margin:18px 0}.eye svg{display:block;width:100%;height:auto;max-height:340px}
+  .synapse{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;margin:18px 0}.synbox{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}.synarrow{font-size:1.6rem;color:#5f8f69;font-weight:900}
+  .stressbar{height:22px;border-radius:999px;background:linear-gradient(90deg,#b8e08f 0 33%,#f1c66d 33% 66%,#d97b72 66%);margin:10px 0}
+  .criteria{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.criteria div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px}.criteria strong{color:#245a35}
+  .badge{display:inline-block;padding:4px 9px;border-radius:99px;font-size:.76rem;font-weight:800;background:#e5f3e8;color:#28603a;margin:0 5px 5px 0}
+
+  @media(max-width:860px){
+    .app{display:block}aside{position:static;height:auto;padding:14px 15px}.brand{margin-bottom:12px}.progress-wrap{margin-bottom:10px}.nav-list{display:none}.side-note{display:none}.top-mobile{display:flex;gap:8px;align-items:center}.top-mobile select{width:100%;border-radius:9px;padding:9px;border:1px solid rgba(255,255,255,.25);background:#fff;color:#214b31}
+    main{padding:24px 16px 42px}.grid,.grid-3,.ns-grid,.sense-grid,.criteria{grid-template-columns:1fr}.hero{padding:25px 20px}.hero:after{font-size:90px}.synapse{grid-template-columns:1fr}.synarrow{transform:rotate(90deg)}
+    .pager{position:sticky;bottom:8px;background:rgba(244,248,245,.93);padding:8px;border-radius:12px;backdrop-filter:blur(6px)}
+  }
+  @media print{aside,.pager,.mark-btn,.top-mobile{display:none!important}.app{display:block}main{max-width:none;padding:0}.page{display:block!important;page-break-after:always}.hero,.card,.mini-task{box-shadow:none}.see-also{margin-top:18px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside>
+    <div class="brand"><div class="bioicon">🧠</div><div><h1>Biologie · Lernpfad</h1><small>Klasse 9 · Nervensystem</small></div></div>
+    <div class="progress-wrap"><div class="progress-label"><span>Fortschritt</span><span id="progressText">0 / 10</span></div><div class="progress-track"><div class="progress-bar" id="progressBar"></div></div></div>
+    <div class="top-mobile"><select id="mobileSelect" aria-label="Seite auswählen"></select></div>
+    <nav class="nav-list" id="navList" aria-label="Lernpfad-Navigation"></nav>
+    <p class="side-note">Arbeite die Seiten in deinem Tempo durch. Markiere Seiten als wiederholt, wenn du die Lernziele sicher beherrschst.</p>
+  </aside>
+
+  <main>
+    <section class="page active" data-title="Start" data-count="false">
+      <div class="hero">
+        <div class="kicker">Biologie · Klasse 9 · Niveaustufe G</div>
+        <h2>Bau und Funktion des Nervensystems</h2>
+        <p class="lead">Dein Nervensystem verbindet Wahrnehmung, Verarbeitung und Reaktion. Sinneszellen nehmen Reize auf, Nervenzellen leiten Informationen weiter und das Zentralnervensystem verarbeitet sie. In diesem Lernpfad wiederholst du die wichtigsten Zusammenhänge – vom einzelnen Neuron bis zum Zusammenspiel von Sinnesorgan, Gehirn und Muskel.</p>
+        <div><span class="badge">ca. 19 Unterrichtsstunden</span><span class="badge">Struktur–Funktion</span><span class="badge">System-Konzept</span><span class="badge">Experimente</span><span class="badge">Gesundheit & Prävention</span></div>
+        <div class="grid">
+          <div class="card goal"><h3>Das wiederholst du</h3><ul>
+            <li>Sinne, Sinnesorgane und adäquate Reize</li>
+            <li>Bau und Funktion einer Nervenzelle</li>
+            <li>Synapsen und vereinfachte Informationsweitergabe</li>
+            <li>Zentralnervensystem, peripheres und vegetatives Nervensystem</li>
+            <li>Reiz-Reaktions-Schema und Reflexbogen</li>
+            <li>Bau und Funktion eines Sinnesorgans am Beispiel Auge</li>
+            <li>Wahrnehmung und Sinnestäuschungen</li>
+            <li>Stress, Sucht und Schutz des Nervensystems</li>
+          </ul></div>
+          <div class="card tip"><h3>So arbeitest du</h3><p>Bearbeite Aufgaben zunächst ohne Lösung. Nutze die Fachbegriffe präzise und prüfe bei Experimenten immer: <strong>Was ist der Reiz? Was wird gemessen? Welche Variable wird verändert? Welche Bedingungen müssen gleich bleiben?</strong></p><p><strong>Wichtig:</strong> Modelle vereinfachen. Sie helfen beim Erklären, sind aber nie identisch mit der biologischen Wirklichkeit.</p></div>
+        </div>
+      </div>
+      <p class="see-also">Siehe auch ...</p>
+      <div class="pager"><button disabled>← Zurück</button><button data-next>Los geht’s →</button></div>
+    </section>
+
+    <section class="page" data-title="1 · Reiz, Sinneszelle, Reaktion" data-count="true">
+      <div class="kicker">Seite 1</div><h2>Information beginnt mit einem Reiz</h2>
+      <p class="lead">Damit dein Körper auf Veränderungen reagieren kann, müssen Sinneszellen Reize aufnehmen und in Signale umwandeln, die im Nervensystem weiterverarbeitet werden.</p>
+      <div class="card goal"><h3>Lernziele</h3><ul><li>Du unterscheidest Reiz, Erregung und Reaktion.</li><li>Du erklärst den Begriff <span class="term">adäquater Reiz</span>.</li><li>Du beschreibst ein einfaches Reiz-Reaktions-Schema.</li></ul></div>
+      <div class="flow">
+        <div class="flowbox">Reiz</div><div class="flowarrow">→</div>
+        <div class="flowbox">Sinneszelle / Rezeptor</div><div class="flowarrow">→</div>
+        <div class="flowbox">Nervensystem</div><div class="flowarrow">→</div>
+        <div class="flowbox">Effektor</div><div class="flowarrow">→</div>
+        <div class="flowbox">Reaktion</div>
+      </div>
+      <div class="grid">
+        <div class="card"><h3>Reiz</h3><p>Eine physikalische oder chemische Veränderung, die von einer Sinneszelle registriert werden kann – zum Beispiel Licht, Schall, Druck, Temperatur oder bestimmte Moleküle.</p></div>
+        <div class="card"><h3>Adäquater Reiz</h3><p>Die Reizart, auf die ein Rezeptor besonders empfindlich spezialisiert ist. Fotorezeptoren der Netzhaut reagieren beispielsweise besonders empfindlich auf Licht.</p></div>
+      </div>
+      <div class="card warm"><h3>Alltagssprache und Fachsprache</h3><p>Im Alltag sagt man oft: „Das Auge sieht.“ Fachsprachlich genauer ist: <strong>Sinneszellen der Netzhaut nehmen Lichtreize auf; das Nervensystem verarbeitet die Signale; die Wahrnehmung entsteht im Gehirn.</strong></p></div>
+      <div class="mini-task"><div class="task-label">Anwenden</div><h3>Du berührst versehentlich eine sehr warme Tasse und ziehst die Hand zurück. Ordne Reiz, Rezeptor, Effektor und Reaktion zu.</h3><details><summary>Lösung anzeigen</summary><p><strong>Reiz:</strong> starke Erwärmung der Haut. <strong>Rezeptoren:</strong> Temperatur- und ggf. Schmerzrezeptoren der Haut. <strong>Effektor:</strong> Skelettmuskeln des Arms/der Hand. <strong>Reaktion:</strong> Zurückziehen der Hand.</p></details></div>
+      <button class="mark-btn">✓ Als wiederholt markieren</button><p class="see-also">Siehe auch ...</p><div class="pager"><button data-prev>← Zurück</button><button data-next>Weiter →</button></div>
+    </section>
+
+    <section class="page" data-title="2 · Bau der Nervenzelle" data-count="true">
+      <div class="kicker">Seite 2</div><h2>Die Nervenzelle – spezialisiert auf Information</h2>
+      <p class="lead">Nervenzellen, auch Neuronen genannt, besitzen eine auffällige Gestalt. Ihre Struktur ist eng mit ihrer Funktion verknüpft: Informationen aufnehmen, verarbeiten und weiterleiten.</p>
+      <div class="card goal"><h3>Lernziele</h3><ul><li>Du benennst Dendriten, Soma, Axon und Synapse.</li><li>Du erklärst den Zusammenhang zwischen Bau und Funktion einer Nervenzelle.</li><li>Du kannst ein Neuron als Modell zeichnen und beschriften.</li></ul></div>
+      <div class="neuron">
+        <svg viewBox="0 0 900 300" role="img" aria-label="Vereinfachtes Modell einer Nervenzelle">
+          <g stroke="#4f8f35" stroke-width="7" fill="none" stroke-linecap="round">
+            <path d="M190 145 C130 115,115 72,78 55 M190 145 C125 155,105 195,60 210 M190 145 C135 120,115 125,70 120 M190 145 C155 90,165 60,150 30"/>
+            <path d="M250 150 C380 150,500 150,690 150"/>
+          </g>
+          <circle cx="220" cy="150" r="58" fill="#dff1d5" stroke="#4f8f35" stroke-width="6"/>
+          <circle cx="220" cy="150" r="24" fill="#83bd65"/>
+          <g fill="#eef6fb" stroke="#4e86b8" stroke-width="4">
+            <rect x="320" y="126" width="72" height="48" rx="24"/><rect x="410" y="126" width="72" height="48" rx="24"/><rect x="500" y="126" width="72" height="48" rx="24"/><rect x="590" y="126" width="72" height="48" rx="24"/>
+          </g>
+          <path d="M690 150 C730 120,755 110,790 100 M690 150 C735 150,760 160,805 175 M690 150 C725 185,750 205,790 220" stroke="#4f8f35" stroke-width="7" fill="none" stroke-linecap="round"/>
+          <circle cx="800" cy="96" r="8" fill="#c46b1a"/><circle cx="815" cy="177" r="8" fill="#c46b1a"/><circle cx="800" cy="225" r="8" fill="#c46b1a"/>
+          <g font-family="system-ui" font-size="18" fill="#214d31" font-weight="700">
+            <text x="60" y="270">Dendriten</text><text x="183" y="238">Soma</text><text x="448" y="212">Axon</text><text x="690" y="270">Endknöpfchen / Synapse</text>
+          </g>
+        </svg>
+      </div>
+      <table>
+        <tr><th>Struktur</th><th>Funktion – vereinfacht</th></tr>
+        <tr><td>Dendriten</td><td>nehmen Signale anderer Zellen auf</td></tr>
+        <tr><td>Soma (Zellkörper)</td><td>enthält den Zellkern und ist Stoffwechselzentrum der Nervenzelle</td></tr>
+        <tr><td>Axon</td><td>leitet elektrische Erregung über größere Strecken weiter</td></tr>
+        <tr><td>Endknöpfchen/Synapse</td><td>überträgt Information auf eine nachgeschaltete Zelle</td></tr>
+      </table>
+      <div class="card info"><h3>Optional: Mikroskopieren</h3><p>Bei einem Dauerpräparat lassen sich Zellkörper und Fortsätze von Nervenzellen erkennen. Eine mikroskopische Zeichnung sollte nur Strukturen zeigen, die tatsächlich beobachtbar sind – nicht automatisch alle Bestandteile aus einem Lehrbuchmodell.</p></div>
+      <div class="mini-task"><div class="task-label">Struktur–Funktion</div><h3>Warum ist ein langes Axon für manche Nervenzellen sinnvoll?</h3><details><summary>Lösung anzeigen</summary><p>Es ermöglicht die Weiterleitung von Informationen über größere Entfernungen, zum Beispiel vom Rückenmark bis zu Muskeln im Bein.</p></details></div>
+      <button class="mark-btn">✓ Als wiederholt markieren</button><p class="see-also">Siehe auch ...</p><div class="pager"><button data-prev>← Zurück</button><button data-next>Weiter →</button></div>
+    </section>
+
+    <section class="page" data-title="3 · Synapse & Informationsweitergabe" data-count="true">
+      <div class="kicker">Seite 3</div><h2>Von einer Nervenzelle zur nächsten</h2>
+      <p class="lead">Innerhalb einer Nervenzelle wird Information als elektrische Erregung weitergeleitet. An vielen Synapsen erfolgt die Übertragung auf die nächste Zelle mithilfe chemischer Botenstoffe.</p>
+      <div class="card goal"><h3>Lernziele</h3><ul><li>Du beschreibst die Informationsweitergabe an einer chemischen Synapse vereinfacht.</li><li>Du unterscheidest elektrische Weiterleitung im Axon und chemische Übertragung an der Synapse.</li><li>Du erklärst, warum Synapsen Angriffspunkte für Medikamente und Drogen sein können.</li></ul></div>
+      <div class="synapse">
+        <div class="synbox"><strong>1 · Elektrisches Signal</strong><br>Erregung erreicht das Endknöpfchen.</div><div class="synarrow">→</div>
+        <div class="synbox"><strong>2 · Botenstoff</strong><br>Neurotransmitter werden in den synaptischen Spalt abgegeben.</div>
+      </div>
+      <div class="synapse">
+        <div class="synbox"><strong>3 · Bindung</strong><br>Botenstoffe binden an passende Rezeptoren der nächsten Zelle.</div><div class="synarrow">→</div>
+        <div class="synbox"><strong>4 · Neue Reaktion</strong><br>In der nachgeschalteten Zelle wird ein neues Signal ausgelöst oder beeinflusst.</div>
+      </div>
+      <div class="card warn"><h3>Vereinfachung</h3><p>Die genaue Entstehung und Weiterleitung elektrischer Signale wird erst in der Oberstufe detailliert behandelt. Für diesen Lernpfad genügt: <strong>Axon – elektrische Erregung; viele Synapsen – chemische Übertragung durch Botenstoffe.</strong></p></div>
+      <div class="mini-task"><div class="task-label">Vergleichen</div><h3>Was unterscheidet die Informationsweitergabe entlang eines Axons von der Übertragung an einer chemischen Synapse?</h3><details><summary>Lösung anzeigen</summary><p>Entlang des Axons wird Information als elektrische Erregung weitergeleitet. An der chemischen Synapse wird das Signal zunächst in die Ausschüttung eines Botenstoffes übersetzt, der an Rezeptoren der nächsten Zelle bindet.</p></details></div>
+      <button class="mark-btn">✓ Als wiederholt markieren</button><p class="see-also">Siehe auch ...</p><div class="pager"><button data-prev>← Zurück</button><button data-next>Weiter →</button></div>
+    </section>
+
+    <section class="page" data-title="4 · Gliederung des Nervensystems" data-count="true">
+      <div class="kicker">Seite 4</div><h2>Ein System aus Zentrale und Leitungen</h2>
+      <p class="lead">Das menschliche Nervensystem lässt sich nach Lage und Funktion gliedern. Die Teile arbeiten eng zusammen und ermöglichen Informationsaustausch im gesamten Körper.</p>
+      <div class="card goal"><h3>Lernziele</h3><ul><li>Du unterscheidest Zentralnervensystem und peripheres Nervensystem.</li><li>Du beschreibst die Aufgabe des vegetativen Nervensystems.</li><li>Du erklärst das Nervensystem als biologisches System.</li></ul></div>
+      <div class="ns-grid">
+        <div class="ns-card"><h4>Zentralnervensystem (ZNS)</h4><p><strong>Gehirn und Rückenmark.</strong> Hier werden Informationen verarbeitet, verknüpft und Reaktionen koordiniert.</p></div>
+        <div class="ns-card"><h4>Peripheres Nervensystem (PNS)</h4><p>Nerven außerhalb von Gehirn und Rückenmark. Sie verbinden Sinnesorgane, Muskeln und Organe mit dem ZNS.</p></div>
+        <div class="ns-card"><h4>Vegetatives Nervensystem</h4><p>Regelt viele innere Körperfunktionen weitgehend unwillkürlich, z. B. Herzfrequenz, Verdauung und Pupillenweite.</p></div>
+      </div>
+      <div class="card tip"><h3>System-Konzept</h3><p>Ein Sinnesorgan allein erzeugt noch keine vollständige Wahrnehmung und ein Muskel reagiert nicht ohne Steuerung. Erst das <strong>Zusammenwirken</strong> von Rezeptoren, Nervenbahnen, ZNS und Effektoren ermöglicht eine angemessene Reaktion.</p></div>
+      <div class="mini-task"><div class="task-label">Zuordnen</div><h3>Ordne zu: Gehirn – Ischiasnerv – Rückenmark – Nervenfasern zur Darmwand. ZNS oder PNS?</h3><details><summary>Lösung anzeigen</summary><p><strong>ZNS:</strong> Gehirn und Rückenmark. <strong>PNS:</strong> Ischiasnerv und Nervenfasern zur Darmwand.</p></details></div>
+      <button class="mark-btn">✓ Als wiederholt markieren</button><p class="see-also">Siehe auch ...</p><div class="pager"><button data-prev>← Zurück</button><button data-next>Weiter →</button></div>
+    </section>
+
+    <section class="page" data-title="5 · Reiz-Reaktion & Reflex" data-count="true">
+      <div class="kicker">Seite 5</div><h2>Vom Reiz zur Reaktion – und manchmal besonders schnell</h2>
+      <p class="lead">Viele Reaktionen werden bewusst gesteuert. Reflexe dagegen laufen schnell, weitgehend unwillkürlich und nach einem typischen Verschaltungsmuster ab.</p>
+      <div class="card goal"><h3>Lernziele</h3><ul><li>Du beschreibst ein Reiz-Reaktions-Schema.</li><li>Du erklärst einen einfachen Reflexbogen.</li><li>Du unterscheidest Reflex und bewusste Reaktion.</li></ul></div>
+      <div class="reflex">
+        <svg viewBox="0 0 920 260" role="img" aria-label="Vereinfachtes Schema eines Reflexbogens">
+          <g font-family="system-ui" font-size="17" fill="#214d31" text-anchor="middle">
+            <rect x="30" y="88" width="145" height="72" rx="14" fill="#eef6fb" stroke="#4e86b8" stroke-width="3"/><text x="102" y="117" font-weight="700">Reiz</text><text x="102" y="141">Hautrezeptor</text>
+            <rect x="245" y="88" width="155" height="72" rx="14" fill="#eef7f0" stroke="#4f8f35" stroke-width="3"/><text x="322" y="117" font-weight="700">sensorische</text><text x="322" y="141">Nervenbahn</text>
+            <rect x="470" y="88" width="145" height="72" rx="14" fill="#fff7e8" stroke="#c46b1a" stroke-width="3"/><text x="542" y="117" font-weight="700">Rückenmark</text><text x="542" y="141">Verschaltung</text>
+            <rect x="685" y="88" width="155" height="72" rx="14" fill="#f5f0fb" stroke="#7653a6" stroke-width="3"/><text x="762" y="117" font-weight="700">motorische</text><text x="762" y="141">Nervenbahn</text>
+            <text x="875" y="115" font-weight="700">Muskel</text><text x="875" y="140">Reaktion</text>
+          </g>
+          <g stroke="#5f8f69" stroke-width="5" fill="none" marker-end="url(#arr)">
+            <defs><marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#5f8f69"/></marker></defs>
+            <path d="M175 124 H235"/><path d="M400 124 H460"/><path d="M615 124 H675"/><path d="M840 124 H862"/>
+          </g>
+          <path d="M542 88 C540 42,650 35,720 50" fill="none" stroke="#a0aa9f" stroke-width="3" stroke-dasharray="7 6"/>
+          <text x="680" y="33" font-family="system-ui" font-size="15" fill="#68746d">Information gelangt zusätzlich zum Gehirn</text>
+        </svg>
+      </div>
+      <div class="grid">
+        <div class="card"><h3>Reflex</h3><p>Eine schnelle, weitgehend unwillkürliche und stereotype Reaktion auf einen bestimmten Reiz. Die erste Verschaltung kann bereits im Rückenmark erfolgen.</p></div>
+        <div class="card"><h3>Bewusste Reaktion</h3><p>Information wird stärker im Gehirn verarbeitet; Erfahrungen, Ziele und Entscheidungen können die Reaktion beeinflussen.</p></div>
+      </div>
+      <div class="mini-task"><div class="task-label">Erklären</div><h3>Warum ist „Ein Reflex läuft ohne Gehirn ab“ als allgemeine Aussage zu grob?</h3><details><summary>Lösung anzeigen</summary><p>Die schnelle erste Verschaltung eines einfachen Reflexes kann im Rückenmark erfolgen. Gleichzeitig werden Informationen an das Gehirn weitergeleitet, sodass du den Reiz wahrnehmen und nachträglich bewusst reagieren kannst.</p></details></div>
+      <button class="mark-btn">✓ Als wiederholt markieren</button><p class="see-also">Siehe auch ...</p><div class="pager"><button data-prev>← Zurück</button><button data-next>Weiter →</button></div>
+    </section>
+
+    <section class="page" data-title="6 · Sinne & Experimente" data-count="true">
+      <div class="kicker">Seite 6</div><h2>Sinne untersuchen – biologische Erkenntnisse gewinnen</h2>
+      <p class="lead">Sinnesorgane reagieren auf unterschiedliche Reizarten. Ihre Leistungen und Grenzen lassen sich mit einfachen, kontrollierten Untersuchungen erfassen.</p>
+      <div class="card goal"><h3>Lernziele</h3><ul><li>Du ordnest Sinnesmodalitäten typischen Reizarten zu.</li><li>Du planst ein einfaches Experiment zu einer Sinnesleistung.</li><li>Du unterscheidest Beobachtung, Vermutung und Hypothese.</li></ul></div>
+      <div class="sense-grid">
+        <div class="sense"><strong>Sehen</strong>Licht → Fotorezeptoren</div>
+        <div class="sense"><strong>Hören</strong>Schall → Mechanorezeptoren</div>
+        <div class="sense"><strong>Tasten</strong>Druck/Verformung → Mechanorezeptoren</div>
+        <div class="sense"><strong>Temperatur</strong>Erwärmung/Abkühlung → Thermorezeptoren</div>
+        <div class="sense"><strong>Riechen</strong>gelöste/flüchtige Stoffe → Chemorezeptoren</div>
+        <div class="sense"><strong>Schmecken</strong>gelöste Stoffe → Chemorezeptoren</div>
+      </div>
+      <div class="card info"><h3>Beispiel: Zweipunktschwelle</h3><p>Du kannst untersuchen, ab welchem Abstand zwei gleichzeitig aufgesetzte Spitzen als zwei getrennte Berührungen wahrgenommen werden. Vergleiche verschiedene Hautbereiche.</p><p><strong>Unabhängige Variable:</strong> Abstand der Spitzen oder Hautbereich. <strong>Abhängige Variable:</strong> Wahrnehmung „ein Punkt“/„zwei Punkte“. <strong>Kontrollvariablen:</strong> Anpressdruck, Dauer, gleiche Versuchsperson, gleiche Spitzen.</p></div>
+      <div class="mini-task"><div class="task-label">Hypothese</div><h3>Formuliere eine überprüfbare Hypothese für einen Vergleich von Fingerspitze und Unterarm bei der Zweipunktschwelle.</h3><details><summary>Lösung anzeigen</summary><p>Beispiel: „Wenn der Abstand der beiden Spitzen schrittweise verkleinert wird, dann kann die Versuchsperson an der Fingerspitze zwei Reize bei geringerem Abstand getrennt wahrnehmen als am Unterarm.“</p></details></div>
+      <div class="mini-task"><div class="task-label">Methodenkritik</div><h3>Warum sollte die Versuchsperson während des Tests die Augen schließen?</h3><details><summary>Lösung anzeigen</summary><p>Damit visuelle Informationen das Ergebnis nicht beeinflussen. Die untersuchte Wahrnehmung soll möglichst auf dem Tastsinn beruhen.</p></details></div>
+      <button class="mark-btn">✓ Als wiederholt markieren</button><p class="see-also">Siehe auch ...</p><div class="pager"><button data-prev>← Zurück</button><button data-next>Weiter →</button></div>
+    </section>
+
+    <section class="page" data-title="7 · Das Auge als Sinnesorgan" data-count="true">
+      <div class="kicker">Seite 7</div><h2>Das Auge – Struktur und Funktion</h2>
+      <p class="lead">Am Auge lässt sich besonders gut zeigen, wie der Bau eines Sinnesorgans seine Funktion ermöglicht. Licht wird gebündelt und auf die Netzhaut gelenkt; dort wandeln Sinneszellen Lichtreize in neuronale Signale um.</p>
+      <div class="card goal"><h3>Lernziele</h3><ul><li>Du beschreibst wichtige Bauteile des Auges und ihre Funktionen.</li><li>Du erklärst das Struktur-Funktions-Prinzip am Auge.</li><li>Du beschreibst Kurz- und Weitsichtigkeit vereinfacht als Funktionsstörungen.</li></ul></div>
+      <div class="eye">
+        <svg viewBox="0 0 900 360" role="img" aria-label="Vereinfachter Querschnitt durch das menschliche Auge">
+          <ellipse cx="470" cy="180" rx="285" ry="145" fill="#f9fcff" stroke="#4e86b8" stroke-width="6"/>
+          <path d="M205 75 Q135 180 205 285" fill="#dceffc" stroke="#4e86b8" stroke-width="6"/>
+          <ellipse cx="305" cy="180" rx="45" ry="92" fill="#dff1d5" stroke="#4f8f35" stroke-width="5"/>
+          <ellipse cx="275" cy="180" rx="18" ry="70" fill="#7653a6" opacity=".78"/>
+          <path d="M700 78 Q735 180 700 282" fill="none" stroke="#c46b1a" stroke-width="10"/>
+          <path d="M720 175 C790 165 830 160 865 165" fill="none" stroke="#7653a6" stroke-width="16" stroke-linecap="round"/>
+          <g stroke="#d6b14e" stroke-width="3" opacity=".85">
+            <path d="M40 120 L305 165 L700 165"/><path d="M40 240 L305 195 L700 195"/>
+          </g>
+          <g font-family="system-ui" font-size="17" fill="#214d31" font-weight="700">
+            <text x="130" y="55">Hornhaut</text><text x="235" y="320">Iris / Pupille</text><text x="315" y="75">Linse</text><text x="620" y="330">Netzhaut</text><text x="760" y="145">Sehnerv</text>
+          </g>
+        </svg>
+      </div>
+      <table>
+        <tr><th>Bauteil</th><th>Funktion – vereinfacht</th></tr>
+        <tr><td>Hornhaut und Linse</td><td>brechen/bündeln Licht</td></tr>
+        <tr><td>Iris und Pupille</td><td>regeln, wie viel Licht ins Auge gelangt</td></tr>
+        <tr><td>Netzhaut</td><td>enthält Fotorezeptoren; Licht wird in neuronale Signale umgewandelt</td></tr>
+        <tr><td>Sehnerv</td><td>leitet Signale zum Gehirn</td></tr>
+      </table>
+      <div class="grid">
+        <div class="card"><h3>Kurzsichtigkeit</h3><p>Bei entspanntem Auge wird das Bild ferner Gegenstände vor der Netzhaut scharf. Eine Zerstreuungslinse kann dies korrigieren.</p></div>
+        <div class="card"><h3>Weitsichtigkeit</h3><p>Das Auge bündelt für nahe Gegenstände nicht ausreichend; der gedachte Brennpunkt läge hinter der Netzhaut. Eine Sammellinse kann korrigieren.</p></div>
+      </div>
+      <div class="mini-task"><div class="task-label">Struktur–Funktion</div><h3>Warum führt eine Schädigung des Sehnervs zu Sehstörungen, obwohl Linse und Netzhaut noch Licht aufnehmen können?</h3><details><summary>Lösung anzeigen</summary><p>Die von der Netzhaut erzeugten Signale müssen zum Gehirn weitergeleitet werden. Ist der Sehnerv geschädigt, ist diese Informationsübertragung gestört.</p></details></div>
+      <button class="mark-btn">✓ Als wiederholt markieren</button><p class="see-also">Siehe auch ...</p><div class="pager"><button data-prev>← Zurück</button><button data-next>Weiter →</button></div>
+    </section>
+
+    <section class="page" data-title="8 · Wahrnehmung & Gehirn" data-count="true">
+      <div class="kicker">Seite 8</div><h2>Wahrnehmung entsteht durch Verarbeitung</h2>
+      <p class="lead">Sinnesorgane liefern keine fertige „Kopie der Welt“. Das Gehirn verarbeitet, vergleicht und ergänzt neuronale Signale. Deshalb können Wahrnehmungen situationsabhängig sein – und Sinnestäuschungen entstehen.</p>
+      <div class="card goal"><h3>Lernziele</h3><ul><li>Du erklärst, warum Wahrnehmung mehr ist als Reizaufnahme.</li><li>Du ordnest Sinnestäuschungen als Ergebnis neuronaler Verarbeitung ein.</li><li>Du erklärst das Zusammenwirken von Sinnesorgan und Nervensystem mit dem System-Konzept.</li></ul></div>
+      <div class="flow">
+        <div class="flowbox">physikalischer/chemischer Reiz</div><div class="flowarrow">→</div>
+        <div class="flowbox">Rezeptorsignal</div><div class="flowarrow">→</div>
+        <div class="flowbox">Verarbeitung im ZNS</div><div class="flowarrow">→</div>
+        <div class="flowbox">Wahrnehmung</div>
+      </div>
+      <div class="card purple"><h3>Sinnestäuschungen sind keine „Fehler im Auge“</h3><p>Viele optische Täuschungen entstehen, weil das Gehirn Helligkeit, Kontrast, Perspektive oder räumliche Hinweise nach Regeln verarbeitet, die im Alltag meist nützlich sind. In künstlichen Bildern können diese Regeln zu einer Wahrnehmung führen, die von einer Messung abweicht.</p></div>
+      <div class="card tip"><h3>Behauptung, Vermutung, Hypothese</h3><p><strong>Behauptung:</strong> eine Aussage ohne notwendige Begründung. <strong>Vermutung:</strong> eine noch unsichere Annahme. <strong>Hypothese:</strong> eine begründete, prinzipiell überprüfbare Annahme zu einer naturwissenschaftlichen Fragestellung.</p></div>
+      <div class="mini-task"><div class="task-label">Erklären</div><h3>Warum ist die Formulierung „Das Auge sieht“ biologisch ungenau?</h3><details><summary>Lösung anzeigen</summary><p>Das Auge nimmt Lichtreize auf und wandelt sie in neuronale Signale um. Wahrnehmung entsteht erst durch die Verarbeitung dieser Signale im Nervensystem, besonders im Gehirn.</p></details></div>
+      <button class="mark-btn">✓ Als wiederholt markieren</button><p class="see-also">Siehe auch ...</p><div class="pager"><button data-prev>← Zurück</button><button data-next>Weiter →</button></div>
+    </section>
+
+    <section class="page" data-title="9 · Stress, Drogen & Gesundheit" data-count="true">
+      <div class="kicker">Seite 9</div><h2>Wenn das Nervensystem beeinflusst wird</h2>
+      <p class="lead">Das Nervensystem reagiert auf Belastungen und kann durch psychoaktive Substanzen oder Erkrankungen verändert werden. Biologische Mechanismen helfen, Risiken und Präventionsmaßnahmen sachlich zu beurteilen.</p>
+      <div class="card goal"><h3>Lernziele</h3><ul><li>Du beschreibst Stress als körperliche Anpassungsreaktion.</li><li>Du erklärst vereinfacht, warum psychoaktive Stoffe die Informationsübertragung beeinflussen können.</li><li>Du beurteilst Präventionsmaßnahmen anhand von Kriterien.</li></ul></div>
+      <div class="card warm"><h3>Stress: kurzzeitig nützlich – dauerhaft belastend</h3><p>Eine kurzfristige Stressreaktion kann Aufmerksamkeit und Leistungsbereitschaft erhöhen. Dauerhafte starke Belastung ohne ausreichende Erholung kann dagegen Schlaf, Konzentration, Stimmung und körperliche Regulation beeinträchtigen.</p><div class="stressbar" aria-label="Schematische Skala von geringer bis hoher Belastung"></div><p class="small">Die Skala ist ein Modell: Menschen reagieren unterschiedlich, und „mehr Stress“ ist nicht einfach linear mit „mehr Leistung“ verbunden.</p></div>
+      <div class="grid">
+        <div class="card"><h3>Psychoaktive Stoffe</h3><p>Sie können beispielsweise die Freisetzung, Wirkung oder den Abbau von Neurotransmittern verändern. Dadurch können Wahrnehmung, Reaktionsfähigkeit, Stimmung und Verhalten beeinflusst werden.</p></div>
+        <div class="card"><h3>Sucht</h3><p>Abhängigkeit entsteht nicht durch einen einzigen Faktor. Biologische Wirkungen, Gewohnheiten, psychische Faktoren und soziale Bedingungen können zusammenwirken. Prävention sollte deshalb mehrere Ebenen berücksichtigen.</p></div>
+      </div>
+      <div class="card info"><h3>Anwendung: Diabetes</h3><p>Langjährig erhöhte Blutzuckerwerte können unter anderem periphere Nerven schädigen. Eine solche <strong>diabetische Neuropathie</strong> kann z. B. mit Taubheitsgefühlen oder Schmerzen einhergehen. Das Beispiel zeigt: Auch Stoffwechselerkrankungen können die Funktion des Nervensystems beeinflussen.</p></div>
+      <div class="criteria"><div><strong>Wirksamkeit</strong><br>Gibt es Belege, dass die Maßnahme riskantes Verhalten oder Schäden verringert?</div><div><strong>Adressatenbezug</strong><br>Passt die Maßnahme zur Zielgruppe und Situation?</div><div><strong>Nebenfolgen</strong><br>Kann die Maßnahme unbeabsichtigte negative Wirkungen haben?</div><div><strong>Quellenqualität</strong><br>Stammen Aussagen aus nachvollziehbaren, aktuellen und fachlich geeigneten Quellen?</div></div>
+      <div class="mini-task"><div class="task-label">Bewerten</div><h3>Warum reicht die Aussage „Drogen sind gefährlich“ für eine gute Präventionsmaßnahme nicht aus?</h3><details><summary>Lösung anzeigen</summary><p>Eine wirksame Prävention sollte konkrete Risiken, Wirkmechanismen, Situationen und Schutzmöglichkeiten sachlich erklären. Pauschale Aussagen liefern wenig Orientierung und sind ohne nachvollziehbare Belege schlecht überprüfbar.</p></details></div>
+      <button class="mark-btn">✓ Als wiederholt markieren</button><p class="see-also">Siehe auch ...</p><div class="pager"><button data-prev>← Zurück</button><button data-next>Weiter →</button></div>
+    </section>
+
+    <section class="page selftest" data-title="10 · Selbsttest" data-count="true">
+      <div class="kicker">Seite 10</div><h2>Selbsttest: Nervensystem</h2>
+      <p class="lead">Bearbeite die Aufgaben möglichst ohne zurückzublättern. Öffne die Lösungen erst anschließend.</p>
+      <div class="card goal"><h3>Checkliste</h3><div class="checklist">
+        <label><input type="checkbox"> Ich kann Reiz, Rezeptor, Erregung und Reaktion unterscheiden.</label>
+        <label><input type="checkbox"> Ich kann den Begriff „adäquater Reiz“ erklären.</label>
+        <label><input type="checkbox"> Ich kann Dendrit, Soma, Axon und Synapse zuordnen.</label>
+        <label><input type="checkbox"> Ich kann die Informationsübertragung an einer Synapse vereinfacht erklären.</label>
+        <label><input type="checkbox"> Ich kann ZNS, PNS und vegetatives Nervensystem unterscheiden.</label>
+        <label><input type="checkbox"> Ich kann Reiz-Reaktions-Schema und Reflexbogen erklären.</label>
+        <label><input type="checkbox"> Ich kann ein Experiment zu einer Sinnesleistung planen.</label>
+        <label><input type="checkbox"> Ich kann Bau und Funktion des Auges erklären.</label>
+        <label><input type="checkbox"> Ich kann Wahrnehmung als Leistung von Sinnesorgan und Gehirn beschreiben.</label>
+        <label><input type="checkbox"> Ich kann Stress, Drogenwirkungen und Präventionsmaßnahmen biologisch einordnen.</label>
+      </div></div>
+      <div class="card">
+        <div class="q"><strong>1.</strong> Was ist ein adäquater Reiz?<details><summary>Lösung</summary><p>Die Reizart, auf die ein Rezeptor besonders empfindlich spezialisiert ist.</p></details></div>
+        <div class="q"><strong>2.</strong> Welche Funktion haben Dendriten und Axon?<details><summary>Lösung</summary><p>Dendriten nehmen Signale auf; das Axon leitet elektrische Erregung vom Zellkörper weg zu nachgeschalteten Zellen.</p></details></div>
+        <div class="q"><strong>3.</strong> Welche Rolle spielen Neurotransmitter an vielen Synapsen?<details><summary>Lösung</summary><p>Sie übertragen Information chemisch über den synaptischen Spalt, indem sie an Rezeptoren der nächsten Zelle binden.</p></details></div>
+        <div class="q"><strong>4.</strong> Was gehört zum ZNS?<details><summary>Lösung</summary><p>Gehirn und Rückenmark.</p></details></div>
+        <div class="q"><strong>5.</strong> Was ist ein Reflex?<details><summary>Lösung</summary><p>Eine schnelle, weitgehend unwillkürliche und stereotype Reaktion auf einen bestimmten Reiz.</p></details></div>
+        <div class="q"><strong>6.</strong> Warum braucht ein Sinnesexperiment Kontrollvariablen?<details><summary>Lösung</summary><p>Damit Unterschiede im Ergebnis möglichst auf die gezielt veränderte Variable zurückgeführt werden können.</p></details></div>
+        <div class="q"><strong>7.</strong> Welche Struktur im Auge enthält die lichtempfindlichen Sinneszellen?<details><summary>Lösung</summary><p>Die Netzhaut.</p></details></div>
+        <div class="q"><strong>8.</strong> Warum ist Wahrnehmung nicht identisch mit Reizaufnahme?<details><summary>Lösung</summary><p>Weil die von Sinneszellen erzeugten Signale im Nervensystem verarbeitet, verknüpft und interpretiert werden.</p></details></div>
+        <div class="q"><strong>9.</strong> Warum können psychoaktive Stoffe die Wahrnehmung verändern?<details><summary>Lösung</summary><p>Sie können die Informationsübertragung im Nervensystem, etwa die Wirkung von Neurotransmittern an Synapsen, beeinflussen.</p></details></div>
+        <div class="q"><strong>10.</strong> Nenne zwei Kriterien zur Bewertung einer Präventionsmaßnahme.<details><summary>Lösung</summary><p>Zum Beispiel Wirksamkeit, Adressatenbezug, Nebenfolgen, Quellenqualität. Zwei begründete Kriterien genügen.</p></details></div>
+      </div>
+      <div class="card warm"><h3>Fachbegriffe auf einen Blick</h3><div class="pillrow">
+        <span class="pill">Reiz</span><span class="pill">adäquater Reiz</span><span class="pill">Sinneszelle</span><span class="pill">Rezeptor</span><span class="pill">Neuron</span><span class="pill">Dendrit</span><span class="pill">Soma</span><span class="pill">Axon</span><span class="pill">Synapse</span><span class="pill">Neurotransmitter</span><span class="pill">Zentralnervensystem</span><span class="pill">peripheres Nervensystem</span><span class="pill">vegetatives Nervensystem</span><span class="pill">Reflex</span><span class="pill">Reiz-Reaktions-Schema</span><span class="pill">Sinnesorgan</span><span class="pill">Wahrnehmung</span><span class="pill">Stress</span><span class="pill">Suchtprävention</span>
+      </div></div>
+      <button class="mark-btn">✓ Als wiederholt markieren</button><p class="see-also">Siehe auch ...</p><div class="pager"><button data-prev>← Zurück</button><button disabled>Ende ✓</button></div>
+    </section>
+  </main>
+</div>
+
+<script>
+(() => {
+  const pages = [...document.querySelectorAll('.page')];
+  const navList = document.getElementById('navList');
+  const mobileSelect = document.getElementById('mobileSelect');
+  const countedPages = pages.filter(p => p.dataset.count === 'true');
+  const key = 'biologie9_nervensystem_fortschritt_v1';
+  let done = {};
+  try { done = JSON.parse(localStorage.getItem(key) || '{}'); } catch(e) { done = {}; }
+
+  pages.forEach((p,i) => {
+    const b = document.createElement('button');
+    b.className = 'nav-btn'; b.dataset.index = i;
+    const num = i === 0 ? '⌂' : i;
+    b.innerHTML = `<span class="nav-num">${num}</span><span class="nav-text">${p.dataset.title}</span>`;
+    b.addEventListener('click', () => show(i));
+    navList.appendChild(b);
+    const o = document.createElement('option');
+    o.value=i; o.textContent=(i===0?'Start':p.dataset.title); mobileSelect.appendChild(o);
+  });
+  mobileSelect.addEventListener('change', e => show(Number(e.target.value)));
+
+  function updateProgress(){
+    const complete = countedPages.filter((p) => done[p.dataset.title]).length;
+    document.getElementById('progressText').textContent = `${complete} / ${countedPages.length}`;
+    document.getElementById('progressBar').style.width = `${100*complete/countedPages.length}%`;
+    [...navList.children].forEach((b,i) => { const p=pages[i]; b.classList.toggle('done', !!done[p.dataset.title]); });
+    pages.forEach(p => {
+      const btn=p.querySelector('.mark-btn'); if(!btn) return;
+      const yes=!!done[p.dataset.title];
+      btn.classList.toggle('done',yes);
+      btn.textContent=yes?'✓ Wiederholt':'✓ Als wiederholt markieren';
+    });
+  }
+  function show(i){
+    i=Math.max(0,Math.min(pages.length-1,i));
+    pages.forEach((p,j)=>p.classList.toggle('active',j===i));
+    [...navList.children].forEach((b,j)=>b.classList.toggle('active',j===i));
+    mobileSelect.value=i;
+    history.replaceState(null,'',`#seite-${i}`);
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  pages.forEach((p,i)=>{
+    p.querySelectorAll('[data-next]').forEach(b=>b.addEventListener('click',()=>show(i+1)));
+    p.querySelectorAll('[data-prev]').forEach(b=>b.addEventListener('click',()=>show(i-1)));
+    const mark=p.querySelector('.mark-btn');
+    if(mark) mark.addEventListener('click',()=>{
+      done[p.dataset.title]=!done[p.dataset.title];
+      try{localStorage.setItem(key,JSON.stringify(done));}catch(e){}
+      updateProgress();
+    });
+  });
+  const match=location.hash.match(/seite-(\d+)/);
+  show(match?Number(match[1]):0);
+  updateProgress();
+})();
+</script>
+</body>
+</html>
