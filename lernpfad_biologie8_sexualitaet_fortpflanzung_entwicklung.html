@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lernpfad Biologie 8 – Sexualität, Fortpflanzung und Entwicklung</title>
+<style>
+  :root{
+    --ink:#1f2937;--muted:#5b6472;--paper:#ffffff;--bg:#f4f8f5;
+    --nav:#123524;--nav2:#1d5a3b;--accent:#4f8f35;--accent2:#7bbf45;
+    --green:#287a59;--teal:#1f7a74;--orange:#c46b1a;--red:#b23a3a;
+    --line:#d8e5dc;--soft:#eef7f0;--soft-warm:#fff7e8;--shadow:0 10px 28px rgba(18,53,36,.10);
+  }
+  *{box-sizing:border-box} html{scroll-behavior:smooth}
+  body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.58}
+  button,input,select{font:inherit}.app{min-height:100vh;display:grid;grid-template-columns:290px 1fr}
+  aside{background:linear-gradient(180deg,var(--nav),var(--nav2));color:#fff;padding:24px 18px;position:sticky;top:0;height:100vh;overflow:auto}
+  .brand{display:flex;gap:12px;align-items:center;margin:0 4px 22px}.bioicon{width:42px;height:42px;border-radius:13px;background:linear-gradient(145deg,#d8f1be,#78ba54 58%,#2e7d4b);display:grid;place-items:center;box-shadow:0 4px 16px rgba(0,0,0,.2);font-size:24px}.brand h1{font-size:1rem;line-height:1.2;margin:0}.brand small{display:block;color:#d2e6d8;margin-top:4px;font-weight:500}
+  .progress-wrap{margin:0 4px 18px}.progress-label{font-size:.78rem;color:#dceadf;display:flex;justify-content:space-between}.progress-track{height:7px;background:rgba(255,255,255,.18);border-radius:999px;overflow:hidden;margin-top:6px}.progress-bar{height:100%;width:0;background:#a8dc78;transition:width .25s ease}
+  .nav-list{display:grid;gap:5px}.nav-btn{border:0;width:100%;text-align:left;color:#edf7ef;background:transparent;padding:10px 12px;border-radius:10px;cursor:pointer;display:flex;gap:10px;align-items:flex-start}.nav-btn:hover,.nav-btn.active{background:rgba(255,255,255,.12)}.nav-num{width:24px;height:24px;flex:0 0 24px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.12);font-size:.76rem;font-weight:700}.nav-btn.done .nav-num{background:#b8e08f;color:#1c492a}.nav-text{font-size:.88rem;line-height:1.25;padding-top:2px}.side-note{font-size:.75rem;color:#c7ddcd;margin:22px 6px 0}
+  main{padding:38px clamp(20px,5vw,72px) 58px;max-width:1180px;width:100%;margin:0 auto}.page{display:none;animation:fade .22s ease}.page.active{display:block}@keyframes fade{from{opacity:.25;transform:translateY(4px)}to{opacity:1;transform:none}}
+  .kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.12em;color:#34774d;font-weight:800;margin-bottom:8px}h2{font-size:clamp(1.85rem,4vw,3rem);line-height:1.08;margin:.05em 0 .4em;color:#173f2a;letter-spacing:-.025em}h3{font-size:1.22rem;margin:1.7em 0 .5em;color:#225b3a}h4{font-size:1rem;margin:1.15em 0 .4em}.lead{font-size:1.08rem;color:#465464;max-width:860px}
+  .hero{background:linear-gradient(135deg,#fff 0,#fff 68%,#eaf7e4 100%);border:1px solid var(--line);border-radius:22px;padding:clamp(24px,5vw,52px);box-shadow:var(--shadow);position:relative;overflow:hidden}.hero:after{content:"◎";position:absolute;right:24px;bottom:-38px;font-size:160px;color:rgba(79,143,53,.065);transform:rotate(-8deg)}
+  .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:18px 0}.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}.card{background:var(--paper);border:1px solid var(--line);border-radius:15px;padding:18px;box-shadow:0 4px 14px rgba(18,53,36,.045)}.card h3,.card h4{margin-top:0}.card p:last-child{margin-bottom:0}.goal{border-left:5px solid var(--accent);background:#f1f9f2}.goal ul{margin-bottom:0}.warm{border-left:5px solid var(--orange);background:var(--soft-warm)}.tip{border-left:5px solid var(--teal);background:#eef8f6}.warn{border-left:5px solid var(--red);background:#fff2f2}.term{display:inline-block;background:#e5f3e8;color:#205d36;padding:.08rem .42rem;border-radius:.38rem;font-weight:700}.small{font-size:.9em;color:#627067}
+  .equation{font-size:1.06rem;font-weight:750;text-align:center;background:#f7faf8;border:1px solid var(--line);padding:12px 14px;border-radius:12px;margin:12px 0}.arrow{color:var(--accent);font-size:1.2em;padding:0 .3em}
+  table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;display:table}th,td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}th{background:#edf5ef;color:#214d31}tr:last-child td{border-bottom:0}
+  .mini-task{background:#fff;border:1px solid #cfded3;border-radius:15px;padding:18px;margin:18px 0}.mini-task h3{margin-top:0;color:#6b5010}.task-label{display:inline-block;font-size:.75rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#6c5a0d;background:#f5efc8;border-radius:99px;padding:4px 9px;margin-bottom:8px}details{margin-top:12px;border-top:1px dashed #c7d7cb;padding-top:10px}summary{cursor:pointer;color:#286d44;font-weight:700}details p:last-child,details ul:last-child{margin-bottom:0}
+  .checklist label{display:block;padding:7px 0}.checklist input{accent-color:var(--green);margin-right:8px}.pager{display:flex;justify-content:space-between;gap:12px;margin-top:28px}.pager button,.mark-btn{border:0;border-radius:10px;padding:10px 15px;cursor:pointer;font-weight:700}.pager button{background:#225b3a;color:#fff}.pager button:disabled{opacity:.32;cursor:default}.mark-btn{background:#e7f4eb;color:#1f6940;margin-top:16px}.mark-btn.done{background:#2f7d4e;color:white}.see-also{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);font-style:italic;color:#65716a}.pillrow{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.pill{background:#edf6ef;border:1px solid #d3e6d7;color:#245a35;border-radius:99px;padding:5px 10px;font-size:.84rem;font-weight:650}.selftest .q{padding:16px 0;border-bottom:1px solid var(--line)}.selftest .q:last-child{border-bottom:0}.selftest strong{color:#23563a}.footer-note{font-size:.78rem;color:#758078;margin-top:22px}.top-mobile{display:none}
+  .flow{display:flex;align-items:stretch;justify-content:center;gap:10px;flex-wrap:wrap;margin:18px 0}.flowbox{flex:1 1 150px;max-width:210px;background:#fff;border:1px solid #cfe0d3;border-radius:12px;padding:12px;text-align:center}.flowbox strong{display:block;color:#245a35}.flowarr{align-self:center;font-size:1.35rem;color:#5f8f69;font-weight:900}
+  .organs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;margin:18px 0}.organ{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px}.organ h4{margin-top:0;color:#225b3a}.organ.female{border-top:5px solid #7f9d57}.organ.male{border-top:5px solid #4f8f76}
+  .timeline{border-left:4px solid #92b978;margin:18px 0;padding-left:18px}.timeitem{position:relative;padding:2px 0 16px}.timeitem:before{content:"";position:absolute;left:-25px;top:8px;width:11px;height:11px;background:#5b8d43;border:3px solid #eef7f0;border-radius:50%}.timeitem strong{color:#245a35}
+  .compare{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:18px 0}.method{background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px}.method h4{margin-top:0;color:#225b3a}.tag{display:inline-block;border-radius:99px;padding:3px 8px;font-size:.76rem;font-weight:750;background:#eef6ef;color:#28603a}.privacy{background:linear-gradient(135deg,#f3faf4,#fff);border:1px solid #cfe0d3;border-radius:14px;padding:16px;margin:18px 0}.privacy strong{color:#245a35}
+  @media(max-width:860px){.app{display:block}aside{position:static;height:auto;padding:14px 15px}.brand{margin-bottom:12px}.progress-wrap{margin-bottom:10px}.nav-list{display:none}.side-note{display:none}.top-mobile{display:flex;gap:8px;align-items:center}.top-mobile select{width:100%;border-radius:9px;padding:9px;border:1px solid rgba(255,255,255,.25);background:#fff;color:#214b31}main{padding:24px 16px 42px}.grid,.grid-3,.organs,.compare{grid-template-columns:1fr}.hero{padding:25px 20px}.hero:after{font-size:90px}.pager{position:sticky;bottom:8px;background:rgba(244,248,245,.93);padding:8px;border-radius:12px;backdrop-filter:blur(6px)}}
+  @media print{aside,.pager,.mark-btn,.top-mobile{display:none!important}.app{display:block}main{max-width:none;padding:0}.page{display:block!important;page-break-after:always}.hero,.card,.mini-task{box-shadow:none}.see-also{margin-top:18px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside>
+    <div class="brand"><div class="bioicon">🌿</div><div><h1>Biologie · Lernpfad</h1><small>Klasse 8 · Sexualität & Entwicklung</small></div></div>
+    <div class="progress-wrap"><div class="progress-label"><span>Fortschritt</span><span id="progressText">0 / 10</span></div><div class="progress-track"><div id="progressBar" class="progress-bar"></div></div></div>
+    <div class="top-mobile"><select id="mobileSelect" aria-label="Seite wählen"></select></div>
+    <nav id="navList" class="nav-list" aria-label="Lernpfad-Navigation"></nav>
+    <p class="side-note">Tipp: Markiere eine Seite als „wiederholt“, wenn du die Lernziele sicher erklären kannst.</p>
+  </aside>
+
+  <main>
+    <section class="page active" data-title="Start" data-count="false">
+      <div class="kicker">Biologie · Klasse 8</div>
+      <div class="hero">
+        <h2>Sexualität, Fortpflanzung und Entwicklung</h2>
+        <p class="lead">In diesem Lernpfad wiederholst du die biologischen Grundlagen von Pubertät, Fortpflanzung, Schwangerschaft und Entwicklung. Außerdem geht es um Verhütung, Prävention, Partnerschaft, Vielfalt und einen respektvollen Umgang miteinander.</p>
+        <div class="privacy"><strong>Wichtig für dieses Thema:</strong> Im Biologieunterricht geht es um Fachwissen. Du musst keine persönlichen Erfahrungen, Gefühle oder privaten Informationen über dich mitteilen. Respektvolle Sprache und das Achten persönlicher Grenzen gehören zum Thema dazu.</div>
+        <div class="grid">
+          <div class="card"><h3>So arbeitest du</h3><ol><li>Wähle links eine Seite.</li><li>Lies die Erklärung und bearbeite die Aufgabe.</li><li>Öffne die Lösung erst danach.</li><li>Markiere die Seite als wiederholt.</li></ol></div>
+          <div class="card"><h3>Was du wiederholst</h3><p>Pubertät · Geschlechtsorgane · Hormone · Menstruationszyklus · Befruchtung · Embryo und Fetus · Schwangerschaft · Geburt · Verhütung · STI-Prävention · Partnerschaft und Vielfalt</p></div>
+        </div>
+        <div class="card goal"><h3>Übergeordnete Ziele</h3><ul><li>Du beschreibst Bau und Funktion wichtiger Organe.</li><li>Du erklärst Fortpflanzung und Entwicklung als biologische Prozesse.</li><li>Du nutzt Fachbegriffe sachgerecht und respektvoll.</li><li>Du kannst Informationen und Handlungsoptionen begründet beurteilen.</li></ul></div>
+      </div>
+      <p class="see-also">Siehe auch ...</p>
+      <div class="pager"><button disabled>← Zurück</button><button data-next>Los geht's →</button></div>
+    </section>
+
+    <section class="page" data-title="1 · Pubertät" data-count="true">
+      <div class="kicker">Seite 1</div><h2>Pubertät – der Körper verändert sich</h2>
+      <p class="lead">Die Pubertät ist eine Entwicklungsphase, in der sich Körper und Erleben deutlich verändern. Der Beginn und die Reihenfolge einzelner Veränderungen sind von Mensch zu Mensch verschieden.</p>
+      <div class="card goal"><h3>Lernziele</h3><ul><li>Du beschreibst typische körperliche Veränderungen in der Pubertät.</li><li>Du unterscheidest primäre und sekundäre Geschlechtsmerkmale.</li><li>Du erklärst, dass Entwicklung individuell verläuft.</li></ul></div>
+      <div class="grid">
+        <div class="card"><h3>Primäre Geschlechtsmerkmale</h3><p>Das sind Geschlechtsorgane, die bereits bei der Geburt angelegt sind und direkt mit der Fortpflanzung zusammenhängen, zum Beispiel Eierstöcke, Hoden, Gebärmutter oder Penis.</p></div>
+        <div class="card"><h3>Sekundäre Geschlechtsmerkmale</h3><p>Sie entwickeln sich verstärkt in der Pubertät, zum Beispiel Körperbehaarung, Stimmveränderungen oder Brustentwicklung.</p></div>
+      </div>
+      <div class="card tip"><h3>Hormone als Botenstoffe</h3><p>Hormone werden im Körper gebildet und über das Blut zu Zielorganen transportiert. In der Pubertät verändern sich die Mengen verschiedener Hormone. Dadurch werden Entwicklungsprozesse angestoßen und gesteuert.</p></div>
+      <div class="card warm"><h3>Hygiene</h3><p>Durch stärkere Schweiß- und Talgproduktion können sich Körpergeruch und Haut verändern. Regelmäßige Körperpflege unterstützt die Gesunderhaltung – ohne dass ein Körper „perfekt“ aussehen muss.</p></div>
+      <div class="mini-task"><div class="task-label">Erklären</div><h3>Warum ist die Aussage „Mit 13 muss die Pubertät bei allen gleich weit sein“ biologisch falsch?</h3><details><summary>Lösung anzeigen</summary><p>Weil Beginn, Geschwindigkeit und Reihenfolge der Pubertätsveränderungen individuell verschieden sind. Biologische Entwicklung verläuft nicht bei allen Menschen gleichzeitig.</p></details></div>
+      <button class="mark-btn">✓ Als wiederholt markieren</button><p class="see-also">Siehe auch ...</p><div class="pager"><button data-prev>← Zurück</button><button data-next>Weiter →</button></div>
+    </section>
+
+    <section class="page" data-title="2 · Geschlechtsorgane" data-count="true">
+      <div class="kicker">Seite 2</div><h2>Bau und Funktion der Geschlechtsorgane</h2>
+      <p class="lead">Organe der Fortpflanzung erfüllen unterschiedliche Aufgaben: Sie bilden Keimzellen und Hormone, ermöglichen deren Transport und – bei einer Schwangerschaft – die Entwicklung des Embryos und Fetus.</p>
+      <div class="card goal"><h3>Lernziele</h3><ul><li>Du benennst wichtige Geschlechtsorgane.</li><li>Du ordnest den Organen ihre Grundfunktionen zu.</li><li>Du unterscheidest Keimzellen von Körperzellen.</li></ul></div>
+      <div class="organs">
+        <div class="organ female"><h4>Eierstöcke</h4><p>Hier reifen Eizellen heran; außerdem werden unter anderem Östrogene und Progesteron gebildet.</p></div>
+        <div class="organ female"><h4>Eileiter &amp; Gebärmutter</h4><p>Im Eileiter kann eine Befruchtung stattfinden. In der Gebärmutter kann sich ein Embryo entwickeln.</p></div>
+        <div class="organ female"><h4>Scheide (Vagina)</h4><p>Sie verbindet die äußeren Geschlechtsorgane mit der Gebärmutter und bildet bei einer vaginalen Geburt einen Teil des Geburtskanals.</p></div>
+        <div class="organ male"><h4>Hoden</h4><p>Hier werden Spermien gebildet; außerdem entsteht unter anderem Testosteron.</p></div>
+        <div class="organ male"><h4>Nebenhoden &amp; Samenleiter</h4><p>Spermien reifen im Nebenhoden weiter und werden über die Samenleiter transportiert.</p></div>
+        <div class="organ male"><h4>Penis</h4><p>Über die Harnröhre können Urin und – zu unterschiedlichen Zeitpunkten – Samenflüssigkeit den Körper verlassen.</p></div>
+      </div>
+      <div class="card warn"><h3>Funktion statt Wertung</h3><p>Biologische Organe lassen sich anhand von Bau und Funktion beschreiben. Daraus folgen keine Aussagen darüber, wie ein Mensch sich selbst erlebt oder welches Geschlecht eine Person für sich beschreibt.</p></div>
+      <div class="mini-task"><div class="task-label">Zuordnen</div><h3>Welche zwei Organe bilden die Keimzellen Eizelle beziehungsweise Spermium?</h3><details><summary>Lösung anzeigen</summary><p>Eizellen reifen in den Eierstöcken heran; Spermien werden in den Hoden gebildet.</p></details></div>
+      <button class="mark-btn">✓ Als wiederholt markieren</button><p class="see-also">Siehe auch ...</p><div class="pager"><button data-prev>← Zurück</button><button data-next>Weiter →</button></div>
+    </section>
+
+    <section class="page" data-title="3 · Hormone & Zyklus" data-count="true">
+      <div class="kicker">Seite 3</div><h2>Hormone und Menstruationszyklus</h2>
+      <p class="lead">Hormone koordinieren viele Vorgänge der Fortpflanzung. Beim Menstruationszyklus verändern sich Eierstock und Gebärmutterschleimhaut in wiederkehrenden Phasen.</p>
+      <div class="card goal"><h3>Lernziele</h3><ul><li>Du erklärst Hormone als Botenstoffe.</li><li>Du beschreibst den Menstruationszyklus vereinfacht.</li><li>Du weißt, dass Zykluslängen schwanken können.</li></ul></div>
+      <div class="flow">
+        <div class="flowbox"><strong>Menstruation</strong>Gebärmutterschleimhaut wird teilweise abgestoßen.</div><div class="flowarr">→</div>
+        <div class="flowbox"><strong>Aufbauphase</strong>Schleimhaut wird erneut aufgebaut; eine Eizelle reift.</div><div class="flowarr">→</div>
+        <div class="flowbox"><strong>Eisprung</strong>Eine reife Eizelle wird aus dem Eierstock freigesetzt.</div><div class="flowarr">→</div>
+        <div class="flowbox"><strong>Zweite Zyklushälfte</strong>Die Schleimhaut wird auf eine mögliche Einnistung vorbereitet.</div>
+      </div>
+      <div class="card tip"><h3>Zyklus ist nicht Uhrwerk</h3><p>Ein Zyklus kann unterschiedlich lang sein. Auch der Zeitpunkt des Eisprungs kann schwanken. Deshalb ist das bloße Zählen von Kalendertagen keine zuverlässig sichere Verhütungsmethode.</p></div>
+      <div class="mini-task"><div class="task-label">Erklären</div><h3>Warum tritt eine Menstruation typischerweise dann auf, wenn keine Schwangerschaft entstanden ist?</h3><details><summary>Lösung anzeigen</summary><p>Wenn sich keine befruchtete Eizelle einnistet, wird die zuvor aufgebaute Gebärmutterschleimhaut nicht in derselben Form benötigt und teilweise abgestoßen.</p></details></div>
+      <button class="mark-btn">✓ Als wiederholt markieren</button><p class="see-also">Siehe auch ...</p><div class="pager"><button data-prev>← Zurück</button><button data-next>Weiter →</button></div>
+    </section>
+
+    <section class="page" data-title="4 · Befruchtung" data-count="true">
+      <div class="kicker">Seite 4</div><h2>Von Keimzellen zur Befruchtung</h2>
+      <p class="lead">Eine Schwangerschaft kann beginnen, wenn eine Spermienzelle mit einer Eizelle verschmilzt und sich die entstehende Zelle weiterentwickelt.</p>
+      <div class="card goal"><h3>Lernziele</h3><ul><li>Du beschreibst den Weg von der Befruchtung bis zur Einnistung.</li><li>Du verwendest die Begriffe Eizelle, Spermium und Zygote korrekt.</li><li>Du erkennst Fortpflanzung als Abfolge mehrerer biologischer Schritte.</li></ul></div>
+      <div class="flow">
+        <div class="flowbox"><strong>Eizelle + Spermium</strong>Keimzellen treffen im Eileiter aufeinander.</div><div class="flowarr">→</div>
+        <div class="flowbox"><strong>Befruchtung</strong>Das Erbgut beider Keimzellen wird vereinigt.</div><div class="flowarr">→</div>
+        <div class="flowbox"><strong>Zygote</strong>Die befruchtete Eizelle beginnt sich zu teilen.</div><div class="flowarr">→</div>
+        <div class="flowbox"><strong>Einnistung</strong>Der frühe Keim erreicht die Gebärmutter und kann sich in die Schleimhaut einnisten.</div>
+      </div>
+      <div class="card warm"><h3>Begriffe genau verwenden</h3><p>Die <span class="term">Befruchtung</span> ist nicht dasselbe wie die <span class="term">Einnistung</span>. Zwischen beiden liegen mehrere Zellteilungen und der Transport durch den Eileiter.</p></div>
+      <div class="mini-task"><div class="task-label">Ordnen</div><h3>Bringe in die richtige Reihenfolge: Einnistung – Zygote – Befruchtung – Zellteilungen.</h3><details><summary>Lösung anzeigen</summary><p>Befruchtung → Zygote → Zellteilungen → Einnistung.</p></details></div>
+      <button class="mark-btn">✓ Als wiederholt markieren</button><p class="see-also">Siehe auch ...</p><div class="pager"><button data-prev>← Zurück</button><button data-next>Weiter →</button></div>
+    </section>
+
+    <section class="page" data-title="5 · Embryo & Fetus" data-count="true">
+      <div class="kicker">Seite 5</div><h2>Entwicklung von Embryo und Fetus</h2>
+      <p class="lead">Nach der Einnistung verändert sich der entstehende Organismus Schritt für Schritt. Dabei entstehen Gewebe und Organe, die wachsen und reifen.</p>
+      <div class="card goal"><h3>Lernziele</h3><ul><li>Du unterscheidest die Begriffe Embryo und Fetus.</li><li>Du erklärst die Aufgaben von Plazenta und Nabelschnur vereinfacht.</li><li>Du beschreibst pränatale Diagnostik als medizinische Untersuchung mit unterschiedlicher Aussagekraft.</li></ul></div>
+      <div class="timeline">
+        <div class="timeitem"><strong>Frühe Entwicklung</strong><br>Aus Zellteilungen entstehen verschiedene Zelltypen und erste Gewebe.</div>
+        <div class="timeitem"><strong>Embryonalphase</strong><br>Grundlegende Organsysteme werden angelegt. In dieser Phase reagiert die Entwicklung besonders empfindlich auf manche schädigenden Einflüsse.</div>
+        <div class="timeitem"><strong>Fetalphase</strong><br>Die angelegten Organe wachsen weiter und reifen; der Körper nimmt zunehmend seine typische Form an.</div>
+      </div>
+      <div class="grid">
+        <div class="card"><h3>Plazenta</h3><p>Über die Plazenta findet Stoffaustausch zwischen mütterlichem und kindlichem Kreislauf statt. Die beiden Blutkreisläufe mischen sich dabei normalerweise nicht direkt.</p></div>
+        <div class="card"><h3>Nabelschnur</h3><p>Sie verbindet den Fetus mit der Plazenta und führt Blutgefäße, über die Stoffe transportiert werden.</p></div>
+      </div>
+      <div class="card tip"><h3>Pränatale Diagnostik</h3><p>Untersuchungen während der Schwangerschaft können die Entwicklung beobachten oder Hinweise auf Besonderheiten liefern. Verschiedene Verfahren unterscheiden sich in Aussagekraft und möglichen Risiken. Ein auffälliger Hinweis ist nicht automatisch eine endgültige Diagnose.</p></div>
+      <div class="mini-task"><div class="task-label">Erklären</div><h3>Warum ist die Plazenta für die Entwicklung wichtig?</h3><details><summary>Lösung anzeigen</summary><p>Sie ermöglicht den Stoffaustausch: Sauerstoff und Nährstoffe können zum Fetus gelangen, während Stoffwechselprodukte in Richtung des mütterlichen Kreislaufs abgegeben werden.</p></details></div>
+      <button class="mark-btn">✓ Als wiederholt markieren</button><p class="see-also">Siehe auch ...</p><div class="pager"><button data-prev>← Zurück</button><button data-next>Weiter →</button></div>
+    </section>
+
+    <section class="page" data-title="6 · Schwangerschaft & Geburt" data-count="true">
+      <div class="kicker">Seite 6</div><h2>Schwangerschaft und Geburt</h2>
+      <p class="lead">Während der Schwangerschaft wachsen Fetus, Gebärmutter und Plazenta gemeinsam als biologisches System. Am Ende führt eine koordinierte Folge von Vorgängen zur Geburt.</p>
+      <div class="card goal"><h3>Lernziele</h3><ul><li>Du beschreibst wichtige Veränderungen während der Schwangerschaft.</li><li>Du erläuterst die Grundphasen einer Geburt.</li><li>Du beurteilst Einflüsse auf die Embryonal- und Fetalentwicklung vorsichtig und sachgerecht.</li></ul></div>
+      <div class="grid">
+        <div class="card"><h3>Versorgung &amp; Schutz</h3><p>Der Fetus wird über Plazenta und Nabelschnur versorgt und ist von Fruchtwasser umgeben. Die Schwangerschaft verändert viele Organsysteme der Schwangeren.</p></div>
+        <div class="card"><h3>Einflüsse</h3><p>Bestimmte Infektionen, manche Medikamente sowie Alkohol, Nikotin und andere Schadstoffe können die Entwicklung beeinträchtigen. Risiken hängen unter anderem von Art, Dosis und Entwicklungsphase ab.</p></div>
+      </div>
+      <div class="flow">
+        <div class="flowbox"><strong>Eröffnungsphase</strong>Wehen verändern den Gebärmutterhals und öffnen den Muttermund.</div><div class="flowarr">→</div>
+        <div class="flowbox"><strong>Geburtsphase</strong>Das Kind wird durch den Geburtskanal geboren.</div><div class="flowarr">→</div>
+        <div class="flowbox"><strong>Nachgeburtsphase</strong>Plazenta und Eihäute werden ausgestoßen.</div>
+      </div>
+      <div class="mini-task"><div class="task-label">Bewerten</div><h3>Warum ist die Aussage „Ein einzelner Einfluss führt immer zu derselben Entwicklungsstörung“ zu pauschal?</h3><details><summary>Lösung anzeigen</summary><p>Weil Wirkung und Risiko von mehreren Faktoren abhängen, zum Beispiel Art und Menge des Einflusses, Dauer und Zeitpunkt während der Entwicklung. Biologische Zusammenhänge sind hier nicht einfach „alles oder nichts“.</p></details></div>
+      <button class="mark-btn">✓ Als wiederholt markieren</button><p class="see-also">Siehe auch ...</p><div class="pager"><button data-prev>← Zurück</button><button data-next>Weiter →</button></div>
+    </section>
+
+    <section class="page" data-title="7 · Verhütung" data-count="true">
+      <div class="kicker">Seite 7</div><h2>Verhütung – Schwangerschaft verhindern</h2>
+      <p class="lead">Verhütungsmethoden greifen an unterschiedlichen Stellen in die Vorgänge ein, die zu einer Schwangerschaft führen können. Die Methoden unterscheiden sich in Wirkungsweise, Anwendung und Schutzwirkung.</p>
+      <div class="card goal"><h3>Lernziele</h3><ul><li>Du ordnest Verhütungsmethoden nach ihrem Wirkprinzip.</li><li>Du erklärst den Unterschied zwischen Schwangerschaftsverhütung und Schutz vor STI.</li><li>Du kannst Vor- und Nachteile anhand von Kriterien vergleichen.</li></ul></div>
+      <div class="compare">
+        <div class="method"><span class="tag">Barriere</span><h4>Kondom</h4><p>Verhindert, dass Spermien in die Scheide gelangen. Es kann zugleich das Risiko vieler sexuell übertragbarer Infektionen verringern.</p></div>
+        <div class="method"><span class="tag">hormonell</span><h4>z. B. Pille</h4><p>Hormone verändern unter anderem den Zyklus und können einen Eisprung verhindern. Sie schützt nicht vor STI.</p></div>
+        <div class="method"><span class="tag">langfristig</span><h4>z. B. Spirale</h4><p>Wirkt in der Gebärmutter je nach Typ hormonell oder über Kupfer. Sie schützt nicht vor STI.</p></div>
+      </div>
+      <div class="card tip"><h3>Kondom am Modell</h3><p>Im Unterricht kann die sachgerechte Anwendung an einem Modell geübt werden. Wichtig sind unbeschädigte Verpackung, passendes Haltbarkeitsdatum, vorsichtiges Öffnen, richtige Abrollrichtung und einmalige Verwendung.</p></div>
+      <div class="mini-task"><div class="task-label">Vergleichen</div><h3>Nenne drei Kriterien, nach denen Verhütungsmethoden verglichen werden können.</h3><details><summary>Lösung anzeigen</summary><p>Zum Beispiel Sicherheit bei korrekter Anwendung, Schutz vor STI, Nebenwirkungen, Aufwand, Kosten, Verfügbarkeit, Dauer der Wirkung oder persönliche Eignung.</p></details></div>
+      <button class="mark-btn">✓ Als wiederholt markieren</button><p class="see-also">Siehe auch ...</p><div class="pager"><button data-prev>← Zurück</button><button data-next>Weiter →</button></div>
+    </section>
+
+    <section class="page" data-title="8 · STI & Prävention" data-count="true">
+      <div class="kicker">Seite 8</div><h2>Sexuell übertragbare Infektionen – erkennen und vorbeugen</h2>
+      <p class="lead">Sexuell übertragbare Infektionen, kurz <span class="term">STI</span>, können durch unterschiedliche Krankheitserreger verursacht werden. Manche bleiben zunächst ohne auffällige Beschwerden.</p>
+      <div class="card goal"><h3>Lernziele</h3><ul><li>Du erklärst, was STI sind.</li><li>Du nennst zentrale Möglichkeiten der Prävention.</li><li>Du beurteilst Informationen anhand ihrer fachlichen Zuverlässigkeit.</li></ul></div>
+      <table>
+        <tr><th>Beispiel</th><th>Erregergruppe</th><th>Grundgedanke der Prävention</th></tr>
+        <tr><td>HIV-Infektion</td><td>Virus</td><td>Barrieren wie Kondome senken das Übertragungsrisiko; medizinische Präventions- und Behandlungsmöglichkeiten existieren.</td></tr>
+        <tr><td>Chlamydien</td><td>Bakterien</td><td>Kondome können das Risiko senken; Tests und Behandlung sind wichtig.</td></tr>
+        <tr><td>HPV</td><td>Viren</td><td>Impfung kann gegen wichtige HPV-Typen schützen; Barrieren senken, aber verhindern das Risiko nicht vollständig.</td></tr>
+      </table>
+      <div class="card warn"><h3>Keine Diagnose aus dem Internet</h3><p>Symptome sind oft unspezifisch. Verlässliche Informationen stammen zum Beispiel von medizinischen Fachstellen und öffentlichen Gesundheitsangeboten. Bei einem konkreten Verdacht ist eine medizinische Untersuchung entscheidend.</p></div>
+      <div class="mini-task"><div class="task-label">Quellen prüfen</div><h3>Welche Quelle ist für Informationen über STI wahrscheinlich verlässlicher: ein anonymes Social-Media-Video oder eine Seite einer öffentlichen Gesundheitsbehörde? Begründe.</h3><details><summary>Lösung anzeigen</summary><p>Die Seite einer öffentlichen Gesundheitsbehörde ist in der Regel verlässlicher, weil dort fachlich geprüfte Informationen, Verantwortlichkeiten und Quellen nachvollziehbar sein sollten. Trotzdem lohnt sich auch dort ein Blick auf Aktualität und Belege.</p></details></div>
+      <button class="mark-btn">✓ Als wiederholt markieren</button><p class="see-also">Siehe auch ...</p><div class="pager"><button data-prev>← Zurück</button><button data-next>Weiter →</button></div>
+    </section>
+
+    <section class="page" data-title="9 · Partnerschaft & Vielfalt" data-count="true">
+      <div class="kicker">Seite 9</div><h2>Sexualität, Partnerschaft, Vielfalt und Selbstbestimmung</h2>
+      <p class="lead">Menschliche Sexualität umfasst mehr als Fortpflanzung. Gefühle, Beziehungen, sexuelle Orientierung, Geschlechtsidentität, Werte und persönliche Grenzen gehören ebenfalls dazu.</p>
+      <div class="card goal"><h3>Lernziele</h3><ul><li>Du unterscheidest biologische Fortpflanzung von weiteren Aspekten menschlicher Sexualität.</li><li>Du verwendest die Begriffe sexuelle Orientierung und Geschlechtsidentität sachgerecht.</li><li>Du begründest, warum Respekt, Freiwilligkeit und persönliche Grenzen wichtig sind.</li></ul></div>
+      <div class="grid">
+        <div class="card"><h3>Sexuelle Orientierung</h3><p>Beschreibt, zu welchen Menschen sich jemand romantisch oder sexuell hingezogen fühlen kann, zum Beispiel heterosexuell, homosexuell oder bisexuell.</p></div>
+        <div class="card"><h3>Geschlechtsidentität</h3><p>Beschreibt, welchem Geschlecht sich ein Mensch selbst zugehörig fühlt. Sie ist nicht dasselbe wie sexuelle Orientierung.</p></div>
+      </div>
+      <div class="card tip"><h3>Einverständnis und Grenzen</h3><p>Nähe und Sexualität setzen freiwillige Zustimmung voraus. Einverständnis kann jederzeit zurückgenommen werden. Eigene Grenzen und die Grenzen anderer müssen respektiert werden.</p></div>
+      <div class="card warm"><h3>Werte und Normen</h3><p>Familien, Kulturen, Religionen und Gesellschaften können unterschiedliche Vorstellungen über Partnerschaft und Sexualität haben. Im Unterricht können solche Unterschiede betrachtet werden, ohne Menschen abzuwerten oder ihnen eine bestimmte Lebensweise vorzuschreiben.</p></div>
+      <div class="mini-task"><div class="task-label">Unterscheiden</div><h3>Warum sind „sexuelle Orientierung“ und „Geschlechtsidentität“ zwei verschiedene Begriffe?</h3><details><summary>Lösung anzeigen</summary><p>Sexuelle Orientierung beschreibt, zu wem sich jemand hingezogen fühlen kann. Geschlechtsidentität beschreibt, welchem Geschlecht sich eine Person selbst zuordnet. Beide Fragen betreffen unterschiedliche Aspekte der Identität.</p></details></div>
+      <button class="mark-btn">✓ Als wiederholt markieren</button><p class="see-also">Siehe auch ...</p><div class="pager"><button data-prev>← Zurück</button><button data-next>Weiter →</button></div>
+    </section>
+
+    <section class="page selftest" data-title="10 · Selbsttest" data-count="true">
+      <div class="kicker">Seite 10</div><h2>Selbsttest: Sexualität, Fortpflanzung und Entwicklung</h2>
+      <p class="lead">Bearbeite die Aufgaben möglichst ohne zurückzublättern. Öffne die Lösungen erst anschließend.</p>
+      <div class="card goal"><h3>Checkliste</h3><div class="checklist">
+        <label><input type="checkbox"> Ich kann typische Veränderungen der Pubertät erklären.</label>
+        <label><input type="checkbox"> Ich kann wichtige Geschlechtsorgane und ihre Funktionen zuordnen.</label>
+        <label><input type="checkbox"> Ich kann den Menstruationszyklus vereinfacht beschreiben.</label>
+        <label><input type="checkbox"> Ich kann Befruchtung, Zygote und Einnistung unterscheiden.</label>
+        <label><input type="checkbox"> Ich kann Embryo und Fetus unterscheiden und die Funktion der Plazenta erklären.</label>
+        <label><input type="checkbox"> Ich kann Grundzüge von Schwangerschaft und Geburt beschreiben.</label>
+        <label><input type="checkbox"> Ich kann Verhütungsmethoden nach Kriterien vergleichen.</label>
+        <label><input type="checkbox"> Ich kann STI-Prävention erklären.</label>
+        <label><input type="checkbox"> Ich kann sexuelle Orientierung und Geschlechtsidentität unterscheiden.</label>
+      </div></div>
+      <div class="card">
+        <div class="q"><strong>1.</strong> Was ist der Unterschied zwischen primären und sekundären Geschlechtsmerkmalen?<details><summary>Lösung</summary><p>Primäre Geschlechtsmerkmale sind Fortpflanzungsorgane, die bereits bei der Geburt angelegt sind. Sekundäre Geschlechtsmerkmale entwickeln sich verstärkt in der Pubertät und sind nicht direkt Organe der Fortpflanzung.</p></details></div>
+        <div class="q"><strong>2.</strong> Welche Aufgabe haben Hormone?<details><summary>Lösung</summary><p>Hormone sind Botenstoffe, die in bestimmten Organen gebildet und über das Blut zu Zielzellen transportiert werden. Dort beeinflussen sie Körpervorgänge.</p></details></div>
+        <div class="q"><strong>3.</strong> Wo entstehen Eizellen beziehungsweise Spermien?<details><summary>Lösung</summary><p>Eizellen reifen in den Eierstöcken; Spermien entstehen in den Hoden.</p></details></div>
+        <div class="q"><strong>4.</strong> Was ist die Zygote?<details><summary>Lösung</summary><p>Die Zygote ist die befruchtete Eizelle, die nach der Verschmelzung von Ei- und Spermienzelle entsteht.</p></details></div>
+        <div class="q"><strong>5.</strong> Was ist der Unterschied zwischen Befruchtung und Einnistung?<details><summary>Lösung</summary><p>Bei der Befruchtung vereinigen sich Ei- und Spermienzelle. Bei der Einnistung setzt sich der frühe Keim später in der Gebärmutterschleimhaut fest.</p></details></div>
+        <div class="q"><strong>6.</strong> Welche Aufgabe hat die Plazenta?<details><summary>Lösung</summary><p>Sie ermöglicht den Stoffaustausch zwischen mütterlichem und kindlichem Kreislauf und übernimmt weitere wichtige Funktionen für die Schwangerschaft.</p></details></div>
+        <div class="q"><strong>7.</strong> Welche Verhütungsmethode kann zugleich das Risiko vieler STI verringern?<details><summary>Lösung</summary><p>Das Kondom als Barrieremethode.</p></details></div>
+        <div class="q"><strong>8.</strong> Warum kann man aus dem Fehlen von Symptomen nicht sicher schließen, dass keine STI vorliegt?<details><summary>Lösung</summary><p>Weil manche sexuell übertragbaren Infektionen zunächst ohne auffällige Beschwerden verlaufen können.</p></details></div>
+        <div class="q"><strong>9.</strong> Was bedeutet sexuelle Orientierung?<details><summary>Lösung</summary><p>Sie beschreibt, zu welchen Menschen sich jemand romantisch oder sexuell hingezogen fühlen kann.</p></details></div>
+        <div class="q"><strong>10.</strong> Nenne zwei Grundsätze eines respektvollen Umgangs mit Sexualität und Partnerschaft.<details><summary>Lösung</summary><p>Zum Beispiel Freiwilligkeit/Einverständnis, Achtung persönlicher Grenzen, respektvolle Sprache, Schutz der Privatsphäre und keine Diskriminierung.</p></details></div>
+      </div>
+      <div class="card warm"><h3>Fachbegriffe auf einen Blick</h3><div class="pillrow"><span class="pill">Pubertät</span><span class="pill">Hormon</span><span class="pill">Eierstock</span><span class="pill">Eileiter</span><span class="pill">Gebärmutter</span><span class="pill">Hoden</span><span class="pill">Spermium</span><span class="pill">Eizelle</span><span class="pill">Menstruation</span><span class="pill">Eisprung</span><span class="pill">Befruchtung</span><span class="pill">Zygote</span><span class="pill">Einnistung</span><span class="pill">Embryo</span><span class="pill">Fetus</span><span class="pill">Plazenta</span><span class="pill">Nabelschnur</span><span class="pill">Verhütung</span><span class="pill">STI</span><span class="pill">sexuelle Orientierung</span><span class="pill">Geschlechtsidentität</span></div></div>
+      <button class="mark-btn">✓ Als wiederholt markieren</button><p class="see-also">Siehe auch ...</p><div class="pager"><button data-prev>← Zurück</button><button disabled>Ende ✓</button></div>
+    </section>
+  </main>
+</div>
+<script>
+(() => {
+  const pages = [...document.querySelectorAll('.page')];
+  const navList = document.getElementById('navList');
+  const mobileSelect = document.getElementById('mobileSelect');
+  const countedPages = pages.filter(p => p.dataset.count === 'true');
+  const key = 'biologie8_sexualitaet_fortpflanzung_entwicklung_fortschritt_v1';
+  let done = {};
+  try { done = JSON.parse(localStorage.getItem(key) || '{}'); } catch(e) { done = {}; }
+
+  pages.forEach((p,i) => {
+    const b = document.createElement('button');
+    b.className = 'nav-btn'; b.dataset.index = i;
+    const num = i === 0 ? '⌂' : i;
+    b.innerHTML = `<span class="nav-num">${num}</span><span class="nav-text">${p.dataset.title}</span>`;
+    b.addEventListener('click', () => show(i));
+    navList.appendChild(b);
+    const o = document.createElement('option'); o.value=i; o.textContent=(i===0?'Start':p.dataset.title); mobileSelect.appendChild(o);
+  });
+  mobileSelect.addEventListener('change', e => show(Number(e.target.value)));
+
+  function updateProgress(){
+    const complete = countedPages.filter((p) => done[p.dataset.title]).length;
+    document.getElementById('progressText').textContent = `${complete} / ${countedPages.length}`;
+    document.getElementById('progressBar').style.width = `${100*complete/countedPages.length}%`;
+    [...navList.children].forEach((b,i) => { const p=pages[i]; b.classList.toggle('done', !!done[p.dataset.title]); });
+    pages.forEach(p => { const btn=p.querySelector('.mark-btn'); if(!btn) return; const yes=!!done[p.dataset.title]; btn.classList.toggle('done',yes); btn.textContent=yes?'✓ Wiederholt':'✓ Als wiederholt markieren'; });
+  }
+  function show(i){
+    i=Math.max(0,Math.min(pages.length-1,i));
+    pages.forEach((p,j)=>p.classList.toggle('active',j===i));
+    [...navList.children].forEach((b,j)=>b.classList.toggle('active',j===i));
+    mobileSelect.value=i; history.replaceState(null,'',`#seite-${i}`); window.scrollTo({top:0,behavior:'smooth'});
+  }
+  pages.forEach((p,i)=>{
+    p.querySelectorAll('[data-next]').forEach(b=>b.addEventListener('click',()=>show(i+1)));
+    p.querySelectorAll('[data-prev]').forEach(b=>b.addEventListener('click',()=>show(i-1)));
+    const mark=p.querySelector('.mark-btn'); if(mark) mark.addEventListener('click',()=>{ done[p.dataset.title]=!done[p.dataset.title]; try{localStorage.setItem(key,JSON.stringify(done));}catch(e){} updateProgress(); });
+  });
+  const match=location.hash.match(/seite-(\d+)/); show(match?Number(match[1]):0); updateProgress();
+})();
+</script>
+</body>
+</html>
