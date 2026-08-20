@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lernpfad Biologie 8 – Stoffwechsel des Menschen</title>
+<style>
+  :root{
+    --ink:#1f2937;
+    --muted:#5b6472;
+    --paper:#ffffff;
+    --bg:#f4f8f5;
+    --nav:#123524;
+    --nav2:#1d5a3b;
+    --accent:#4f8f35;
+    --accent2:#7bbf45;
+    --green:#287a59;
+    --teal:#1f7a74;
+    --orange:#c46b1a;
+    --red:#b23a3a;
+    --line:#d8e5dc;
+    --soft:#eef7f0;
+    --soft-warm:#fff7e8;
+    --shadow:0 10px 28px rgba(18,53,36,.10);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.58}
+  button,input{font:inherit}
+  .app{min-height:100vh;display:grid;grid-template-columns:290px 1fr}
+  aside{background:linear-gradient(180deg,var(--nav),var(--nav2));color:#fff;padding:24px 18px;position:sticky;top:0;height:100vh;overflow:auto}
+  .brand{display:flex;gap:12px;align-items:center;margin:0 4px 22px}
+  .bioicon{width:42px;height:42px;border-radius:13px;background:linear-gradient(145deg,#cfeeb4,#71b64d 58%,#2e7d4b);display:grid;place-items:center;box-shadow:0 4px 16px rgba(0,0,0,.2);font-size:24px}
+  .brand h1{font-size:1rem;line-height:1.2;margin:0}.brand small{display:block;color:#d2e6d8;margin-top:4px;font-weight:500}
+  .progress-wrap{margin:0 4px 18px}.progress-label{font-size:.78rem;color:#dceadf;display:flex;justify-content:space-between}.progress-track{height:7px;background:rgba(255,255,255,.18);border-radius:999px;overflow:hidden;margin-top:6px}.progress-bar{height:100%;width:0;background:#a8dc78;transition:width .25s ease}
+  .nav-list{display:grid;gap:5px}.nav-btn{border:0;width:100%;text-align:left;color:#edf7ef;background:transparent;padding:10px 12px;border-radius:10px;cursor:pointer;display:flex;gap:10px;align-items:flex-start}.nav-btn:hover,.nav-btn.active{background:rgba(255,255,255,.12)}.nav-num{width:24px;height:24px;flex:0 0 24px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.12);font-size:.76rem;font-weight:700}.nav-btn.done .nav-num{background:#b8e08f;color:#1c492a}.nav-text{font-size:.88rem;line-height:1.25;padding-top:2px}
+  .side-note{font-size:.75rem;color:#c7ddcd;margin:22px 6px 0}
+  main{padding:38px clamp(20px,5vw,72px) 58px;max-width:1180px;width:100%;margin:0 auto}
+  .page{display:none;animation:fade .22s ease}.page.active{display:block}@keyframes fade{from{opacity:.25;transform:translateY(4px)}to{opacity:1;transform:none}}
+  .kicker{font-size:.78rem;text-transform:uppercase;letter-spacing:.12em;color:#34774d;font-weight:800;margin-bottom:8px}
+  h2{font-size:clamp(1.85rem,4vw,3rem);line-height:1.08;margin:.05em 0 .4em;color:#173f2a;letter-spacing:-.025em}
+  h3{font-size:1.22rem;margin:1.7em 0 .5em;color:#225b3a}
+  h4{font-size:1rem;margin:1.15em 0 .4em}
+  .lead{font-size:1.08rem;color:#465464;max-width:840px}
+  .hero{background:linear-gradient(135deg,#fff 0,#fff 68%,#eaf7e4 100%);border:1px solid var(--line);border-radius:22px;padding:clamp(24px,5vw,52px);box-shadow:var(--shadow);position:relative;overflow:hidden}.hero:after{content:"◉";position:absolute;right:24px;bottom:-34px;font-size:150px;color:rgba(79,143,53,.07);transform:rotate(-8deg)}
+  .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:18px 0}.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:15px;padding:18px;box-shadow:0 4px 14px rgba(18,53,36,.045)}
+  .card h3,.card h4{margin-top:0}.card p:last-child{margin-bottom:0}
+  .goal{border-left:5px solid var(--accent);background:#f1f9f2}.goal ul{margin-bottom:0}
+  .warm{border-left:5px solid var(--orange);background:var(--soft-warm)}
+  .tip{border-left:5px solid var(--teal);background:#eef8f6}.warn{border-left:5px solid var(--red);background:#fff2f2}
+  .term{display:inline-block;background:#e5f3e8;color:#205d36;padding:.08rem .42rem;border-radius:.38rem;font-weight:700}
+  .equation{font-size:1.07rem;font-weight:750;text-align:center;background:#f7faf8;border:1px solid var(--line);padding:12px 14px;border-radius:12px;margin:12px 0;letter-spacing:.01em}
+  .arrow{color:var(--accent);font-size:1.2em;padding:0 .3em}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+  table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;display:table}th,td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}th{background:#edf5ef;color:#214d31}tr:last-child td{border-bottom:0}
+  .mini-task{background:#fff;border:1px solid #cfded3;border-radius:15px;padding:18px;margin:18px 0}.mini-task h3{margin-top:0;color:#6b5010}.task-label{display:inline-block;font-size:.75rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#6c5a0d;background:#f5efc8;border-radius:99px;padding:4px 9px;margin-bottom:8px}
+  details{margin-top:12px;border-top:1px dashed #c7d7cb;padding-top:10px}summary{cursor:pointer;color:#286d44;font-weight:700}details p:last-child,details ul:last-child{margin-bottom:0}
+  .checklist label{display:block;padding:7px 0}.checklist input{accent-color:var(--green);margin-right:8px}
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:28px}.pager button,.mark-btn{border:0;border-radius:10px;padding:10px 15px;cursor:pointer;font-weight:700}.pager button{background:#225b3a;color:#fff}.pager button:disabled{opacity:.32;cursor:default}.mark-btn{background:#e7f4eb;color:#1f6940;margin-top:16px}.mark-btn.done{background:#2f7d4e;color:white}
+  .see-also{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);font-style:italic;color:#65716a}
+  .pillrow{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.pill{background:#edf6ef;border:1px solid #d3e6d7;color:#245a35;border-radius:99px;padding:5px 10px;font-size:.84rem;font-weight:650}
+  .selftest .q{padding:16px 0;border-bottom:1px solid var(--line)}.selftest .q:last-child{border-bottom:0}.selftest strong{color:#23563a}
+  .footer-note{font-size:.78rem;color:#758078;margin-top:22px}
+  .top-mobile{display:none}
+  .cell-wrap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:18px 0}.cellpic{background:#fbfdfb;border:1px solid var(--line);border-radius:16px;padding:12px;min-height:280px}.cellpic h4{margin:2px 0 8px;text-align:center;color:#225b3a}.cellpic svg{display:block;width:100%;height:230px}
+  .scale{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;background:#f7faf8;border:1px solid var(--line);border-radius:14px;padding:18px;margin:16px 0}.level{background:#fff;border:1px solid #cfe0d3;border-radius:12px;padding:10px 12px;font-weight:700;color:#245a35}.level-arrow{font-size:1.25rem;color:#5f8f69;font-weight:800}
+  .micro{display:grid;grid-template-columns:180px 1fr;gap:22px;align-items:center;background:#fbfdfb;border:1px solid var(--line);border-radius:16px;padding:18px;margin:18px 0}.micro svg{width:180px;height:260px}.micro ol{margin-top:0}
+  .compare td:first-child,.compare th:first-child{font-weight:700}
+  .badge{display:inline-block;padding:3px 8px;border-radius:99px;font-size:.76rem;font-weight:800;background:#e5f3e8;color:#28603a}
+  @media(max-width:860px){.app{display:block}aside{position:static;height:auto;padding:14px 15px}.brand{margin-bottom:12px}.progress-wrap{margin-bottom:10px}.nav-list{display:none}.side-note{display:none}.top-mobile{display:flex;gap:8px;align-items:center}.top-mobile select{width:100%;border-radius:9px;padding:9px;border:1px solid rgba(255,255,255,.25);background:#fff;color:#214b31}main{padding:24px 16px 42px}.grid,.grid-3,.two-col,.cell-wrap{grid-template-columns:1fr}.micro{grid-template-columns:1fr}.micro svg{margin:0 auto}.hero{padding:25px 20px}.hero:after{font-size:90px}.pager{position:sticky;bottom:8px;background:rgba(244,248,245,.93);padding:8px;border-radius:12px;backdrop-filter:blur(6px)}}
+  @media print{aside,.pager,.mark-btn,.top-mobile{display:none!important}.app{display:block}main{max-width:none;padding:0}.page{display:block!important;page-break-after:always}.hero,.card,.mini-task{box-shadow:none}.see-also{margin-top:18px}}
+
+  .eco-strip{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;margin:18px 0;padding:18px;background:#f8fbf8;border:1px solid var(--line);border-radius:16px}
+  .eco-box{background:#fff;border:1px solid #cfe0d3;border-radius:12px;padding:10px 14px;text-align:center;min-width:130px}.eco-box strong{display:block;color:#245a35}.eco-arrow{font-size:1.35rem;color:#5f8f69;font-weight:800}
+  .factor-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:18px 0}.factor-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px}.factor-card h4{margin-top:0;color:#225b3a}.abiotic{border-top:5px solid #5b9cc9}.biotic{border-top:5px solid #8e6b3a}
+  .foodweb{background:#fbfdfb;border:1px solid var(--line);border-radius:16px;padding:12px;margin:18px 0}.foodweb svg{display:block;width:100%;height:auto;max-height:340px}
+  .pyramid{max-width:720px;margin:20px auto}.tier{margin:4px auto;text-align:center;padding:10px 12px;border-radius:9px;font-weight:750;border:1px solid #cfe0d3;background:#fff}.tier4{width:36%}.tier3{width:52%}.tier2{width:70%}.tier1{width:90%;background:#edf7e8}.cycle{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px;align-items:center;margin:20px 0}.cycle .node{background:#fff;border:1px solid #cfe0d3;border-radius:12px;padding:12px;text-align:center;font-weight:700;color:#245a35}.cycle .carr{font-size:1.45rem;color:#5f8f69;font-weight:900}
+  .method-steps{counter-reset:step;display:grid;gap:10px}.method-steps div{counter-increment:step;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px 12px 48px;position:relative}.method-steps div:before{content:counter(step);position:absolute;left:13px;top:11px;width:25px;height:25px;border-radius:50%;display:grid;place-items:center;background:#2f7d4e;color:#fff;font-weight:800}
+  .small{font-size:.9rem;color:#59675f}
+  @media(max-width:860px){.factor-grid{grid-template-columns:1fr}.cycle{grid-template-columns:1fr}.cycle .carr{transform:rotate(90deg);text-align:center}}
+
+  .metab-flow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;margin:18px 0;padding:18px;background:#f8fbf8;border:1px solid var(--line);border-radius:16px}
+  .metab-box{background:#fff;border:1px solid #cfe0d3;border-radius:12px;padding:11px 14px;text-align:center;min-width:145px}.metab-box strong{display:block;color:#245a35}.metab-arrow{font-size:1.35rem;color:#5f8f69;font-weight:800}
+  .organ-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:18px 0}.organ-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px}.organ-card h4{margin-top:0;color:#225b3a}
+  .nutrient{border-top:5px solid #7bbf45}.transport{border-top:5px solid #4f8f8b}.energy{border-top:5px solid #c88d34}
+  .vessel-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:18px 0}.vessel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px}.vessel h4{margin-top:0}.artery{border-top:5px solid #c65d4a}.vein{border-top:5px solid #526aa8}.capillary{border-top:5px solid #8c6a83}
+  .blood-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:18px 0}.blood-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px}.blood-card h4{margin-top:0;color:#6d2f2f}
+  .system-map{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px;align-items:center;margin:20px 0}.system-map .node{background:#fff;border:1px solid #cfe0d3;border-radius:12px;padding:13px;text-align:center;font-weight:700;color:#245a35}.system-map .sarr{font-size:1.4rem;color:#5f8f69;font-weight:800}
+  .small{font-size:.88rem;color:#67726a;font-weight:600}
+  @media(max-width:860px){.organ-grid,.vessel-row,.blood-grid{grid-template-columns:1fr}.system-map{grid-template-columns:1fr}.system-map .sarr{transform:rotate(90deg);text-align:center}}
+
+</style>
+</head>
+<body>
+<div class="app">
+  <aside>
+    <div class="brand">
+      <div class="bioicon">🫀</div>
+      <h1>Biologie 8<small>Stoffwechsel des Menschen</small></h1>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-label"><span>Dein Fortschritt</span><span id="progressText">0 / 10</span></div>
+      <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+    </div>
+    <div class="top-mobile"><select id="mobileSelect" aria-label="Seite auswählen"></select></div>
+    <nav class="nav-list" id="navList" aria-label="Lernpfad-Navigation"></nav>
+    <div class="side-note">Tipp: Bearbeite die Seiten der Reihe nach. Die Häkchen werden in diesem Browser gespeichert.</div>
+  </aside>
+
+  <main>
+    <section class="page active" data-title="Start" data-count="false">
+      <div class="hero">
+        <div class="kicker">Lernpfad · Klasse 8 · Biologie</div>
+        <h2>Stoffwechsel des Menschen</h2>
+        <p class="lead">Stoffwechsel ist viel mehr als Verdauung. Dein Körper nimmt Stoffe und Energie auf, wandelt sie um, transportiert sie zu den Zellen und gibt Stoffe wieder ab. In diesem Lernpfad wiederholst Du, wie Ernährung, Verdauung, Atmung, Blut und Kreislauf als zusammenhängendes System funktionieren.</p>
+        <div class="grid grid-3">
+          <div class="card"><h4>So arbeitest Du</h4><p>Lies die Erklärungen, bearbeite die Aufgaben und öffne die Lösungen erst danach.</p></div>
+          <div class="card"><h4>So prüfst Du Dich</h4><p>Markiere eine Seite als wiederholt, wenn Du ihre Lernziele ohne Hilfe erklären kannst.</p></div>
+          <div class="card"><h4>Wichtig</h4><p>Achte besonders auf das Struktur-Funktions-Prinzip: Der Bau eines Organs oder Gewebes passt zu seiner Aufgabe.</p></div>
+        </div>
+        <div class="card goal"><h3>Das solltest Du am Ende können</h3><ul>
+          <li>Stoffwechsel von Verdauung unterscheiden und Stoff- sowie Energieflüsse beschreiben,</li>
+          <li>wichtige Nährstoffe nennen, ihre Bedeutung erklären und Nachweisreaktionen auswerten,</li>
+          <li>den Weg der Nahrung und die Aufgaben der Verdauungsorgane beschreiben,</li>
+          <li>Enzymwirkung und Resorption mithilfe einfacher Modelle erklären,</li>
+          <li>Bau und Funktion von Atmungsorganen, Herz und Blutgefäßsystem erläutern,</li>
+          <li>Blutbestandteile und Grundlagen der Blutgruppen erklären,</li>
+          <li>Verdauung, Atmung und Kreislauf zu einem Gesamtsystem verknüpfen und einfache Messdaten auswerten.</li>
+        </ul></div>
+      </div>
+      <p class="see-also">Siehe auch ...</p>
+      <div class="pager"><button disabled>← Zurück</button><button data-next>Los geht's →</button></div>
+    </section>
+
+    <section class="page" data-title="1 · Stoffwechsel – mehr als Verdauung" data-count="true">
+      <div class="kicker">Seite 1</div><h2>Was bedeutet Stoffwechsel?</h2>
+      <p class="lead">Unter Stoffwechsel versteht man die Gesamtheit der biochemischen Vorgänge im Körper. Verdauung ist nur ein Teil davon.</p>
+      <div class="card goal"><h3>Lernziele</h3><ul><li>Du erklärst den Begriff <span class="term">Stoffwechsel</span>.</li><li>Du unterscheidest Aufnahme, Umwandlung, Transport und Abgabe von Stoffen.</li><li>Du ordnest <span class="term">Assimilation</span> und <span class="term">Dissimilation</span> vereinfacht ein.</li></ul></div>
+      <div class="metab-flow">
+        <div class="metab-box"><strong>Aufnahme</strong>Nahrung, Wasser, Sauerstoff</div><div class="metab-arrow">→</div>
+        <div class="metab-box"><strong>Umwandlung</strong>Verdauung &amp; Zellstoffwechsel</div><div class="metab-arrow">→</div>
+        <div class="metab-box"><strong>Transport</strong>vor allem durch das Blut</div><div class="metab-arrow">→</div>
+        <div class="metab-box"><strong>Abgabe</strong>z. B. CO₂, Wasser, weitere Stoffwechselprodukte</div>
+      </div>
+      <div class="grid">
+        <div class="card"><h3>Assimilation</h3><p>Aus aufgenommenen Stoffen werden körpereigene Stoffe aufgebaut. Beim Menschen geschieht das <strong>heterotroph</strong>: Wir müssen organische Stoffe mit der Nahrung aufnehmen.</p></div>
+        <div class="card"><h3>Dissimilation</h3><p>Energiereiche Stoffe werden abgebaut. Bei der <strong>Zellatmung</strong> wird dabei chemisch gebundene Energie für Lebensvorgänge nutzbar gemacht.</p></div>
+      </div>
+      <div class="card tip"><h3>Vergleich mit anderen Lebewesen</h3><p>Grüne Pflanzen können organische Stoffe durch Fotosynthese selbst herstellen und sind damit autotroph. Einige Mikroorganismen nutzen statt Lichtenergie chemische Energie; dies bezeichnet man als Chemosynthese. Für den menschlichen Stoffwechsel sind diese Prozesse vor allem als Vergleich wichtig.</p></div>
+      <div class="mini-task"><div class="task-label">Erklären</div><h3>Warum ist die Aussage „Stoffwechsel = Verdauung“ zu eng?</h3><details><summary>Lösung anzeigen</summary><p>Weil Stoffwechsel alle biochemischen Vorgänge des Körpers umfasst. Zur Verdauung kommen unter anderem Aufnahme, Transport und Umbau von Stoffen, Zellatmung sowie die Abgabe von Stoffwechselprodukten hinzu.</p></details></div>
+      <button class="mark-btn">✓ Als wiederholt markieren</button><p class="see-also">Siehe auch ...</p><div class="pager"><button data-prev>← Zurück</button><button data-next>Weiter →</button></div>
+    </section>
+
+    <section class="page" data-title="2 · Nahrung & Nährstoffe" data-count="true">
+      <div class="kicker">Seite 2</div><h2>Was steckt in unserer Nahrung?</h2>
+      <p class="lead">Nahrung liefert Baustoffe, Betriebsstoffe und weitere lebensnotwendige Bestandteile. Entscheidend ist nicht nur, wie viel wir essen, sondern auch, woraus die Nahrung zusammengesetzt ist.</p>
+      <div class="card goal"><h3>Lernziele</h3><ul><li>Du nennst die drei energieliefernden Nährstoffgruppen.</li><li>Du erklärst die Bedeutung von Wasser, Mineralstoffen, Vitaminen und Ballaststoffen.</li><li>Du beurteilst einfache Aussagen zur ausgewogenen Ernährung.</li></ul></div>
+      <div class="organ-grid">
+        <div class="organ-card nutrient"><h4>Kohlenhydrate</h4><p>wichtige Energielieferanten; z. B. Stärke und Zucker</p></div>
+        <div class="organ-card nutrient"><h4>Fette</h4><p>energierreiche Stoffe; außerdem Baustoffe und Energiespeicher</p></div>
+        <div class="organ-card nutrient"><h4>Eiweiße / Proteine</h4><p>wichtige Baustoffe; außerdem Bestandteile vieler Enzyme</p></div>
+        <div class="organ-card"><h4>Wasser &amp; Mineralstoffe</h4><p>notwendig für Transport, Zellfunktionen und viele Regelvorgänge</p></div>
+        <div class="organ-card"><h4>Vitamine</h4><p>werden in kleinen Mengen benötigt und erfüllen unterschiedliche Funktionen</p></div>
+        <div class="organ-card"><h4>Ballaststoffe</h4><p>werden kaum verdaut, unterstützen aber unter anderem die Darmfunktion</p></div>
+      </div>
+      <div class="card warm"><h3>Zusatzstoffe</h3><p>Lebensmittel können Zusatzstoffe enthalten, etwa Farbstoffe oder Konservierungsstoffe. Ob ein Lebensmittel „gesund“ ist, lässt sich nicht an einem einzelnen Zusatzstoff oder Nährstoff entscheiden. Eine Bewertung braucht mehrere Kriterien.</p></div>
+      <div class="mini-task"><div class="task-label">Bewerten</div><h3>Ein Getränk wirbt mit „fettfrei“. Reicht diese Angabe aus, um es als besonders gesund zu bewerten?</h3><details><summary>Lösung anzeigen</summary><p>Nein. Man müsste unter anderem Zuckergehalt, Energiegehalt, Menge, weitere Inhaltsstoffe und die gesamte Ernährung betrachten. „Fettfrei“ allein ist kein ausreichendes Bewertungskriterium.</p></details></div>
+      <button class="mark-btn">✓ Als wiederholt markieren</button><p class="see-also">Siehe auch ...</p><div class="pager"><button data-prev>← Zurück</button><button data-next>Weiter →</button></div>
+    </section>
+
+    <section class="page" data-title="3 · Nährstoffnachweise" data-count="true">
+      <div class="kicker">Seite 3</div><h2>Nährstoffe experimentell nachweisen</h2>
+      <p class="lead">Nachweisreaktionen liefern beobachtbare Hinweise darauf, ob bestimmte Stoffgruppen in einer Probe enthalten sind. Entscheidend ist, Beobachtung und Deutung sauber zu trennen.</p>
+      <div class="card goal"><h3>Lernziele</h3><ul><li>Du kennst typische Nachweisprinzipien für Nährstoffe.</li><li>Du formulierst Beobachtungen ohne vorschnelle Deutung.</li><li>Du erklärst die Bedeutung von Vergleichs- und Kontrollproben.</li></ul></div>
+      <table>
+        <tr><th>gesuchter Stoff</th><th>typisches Nachweisprinzip</th><th>mögliche positive Beobachtung</th></tr>
+        <tr><td>Stärke</td><td>Iod-/Lugol-Lösung</td><td>dunkelblaue bis schwarzblaue Färbung</td></tr>
+        <tr><td>reduzierende Zucker, z. B. Glucose</td><td>z. B. Fehling-Probe</td><td>nach Erwärmen Farbänderung und rötlicher Niederschlag</td></tr>
+        <tr><td>Proteine</td><td>z. B. Biuret-Reaktion</td><td>violette Färbung</td></tr>
+        <tr><td>Fette</td><td>je nach Unterricht z. B. Fettfleck- oder Emulsionsprobe</td><td>charakteristische Trübung bzw. dauerhafter Fettfleck</td></tr>
+      </table>
+      <div class="card warn"><h3>Beobachtung ≠ Auswertung</h3><p>„Die Probe enthält Stärke“ ist keine Beobachtung. Beobachtet wird zum Beispiel: „Nach Zugabe der Iod-Lösung färbt sich die Probe dunkelblau.“ Erst anschließend wird gedeutet.</p></div>
+      <div class="mini-task"><div class="task-label">Planen</div><h3>Warum ist bei einer Nachweisreaktion eine bekannte Positivprobe sinnvoll?</h3><details><summary>Lösung anzeigen</summary><p>Sie zeigt, wie eine positive Reaktion unter den gewählten Bedingungen aussehen sollte. So kann man prüfen, ob Reagenz und Durchführung grundsätzlich funktionieren.</p></details></div>
+      <div class="mini-task"><div class="task-label">Auswerten</div><h3>Eine unbekannte Probe bleibt nach Zugabe von Iod-Lösung gelb-braun. Welche vorsichtige Aussage ist möglich?</h3><details><summary>Lösung anzeigen</summary><p>Unter den verwendeten Bedingungen gibt es keinen positiven Hinweis auf Stärke. Das ist präziser als die absolute Aussage, die Probe enthalte „gar keine“ Stärke.</p></details></div>
+      <button class="mark-btn">✓ Als wiederholt markieren</button><p class="see-also">Siehe auch ...</p><div class="pager"><button data-prev>← Zurück</button><button data-next>Weiter →</button></div>
+    </section>
+
+    <section class="page" data-title="4 · Verdauungsorgane" data-count="true">
+      <div class="kicker">Seite 4</div><h2>Der Weg der Nahrung</h2>
+      <p class="lead">Verdauung zerlegt große Nahrungsbestandteile mechanisch und chemisch so, dass aufnehmbare Stoffe entstehen. Die Organe des Verdauungssystems arbeiten dabei arbeitsteilig zusammen.</p>
+      <div class="card goal"><h3>Lernziele</h3><ul><li>Du beschreibst den Weg der Nahrung durch den Verdauungstrakt.</li><li>Du ordnest wichtigen Organen ihre Funktionen zu.</li><li>Du erkennst Struktur-Funktions-Zusammenhänge.</li></ul></div>
+      <div class="metab-flow">
+        <div class="metab-box"><strong>Mund</strong>Zerkleinern, Einspeicheln</div><div class="metab-arrow">→</div>
+        <div class="metab-box"><strong>Speiseröhre</strong>Transport</div><div class="metab-arrow">→</div>
+        <div class="metab-box"><strong>Magen</strong>Durchmischen, Eiweißverdauung beginnt</div><div class="metab-arrow">→</div>
+        <div class="metab-box"><strong>Dünndarm</strong>Verdauung &amp; Resorption</div><div class="metab-arrow">→</div>
+        <div class="metab-box"><strong>Dickdarm</strong>Wasserentzug, Eindickung</div>
+      </div>
+      <div class="grid">
+        <div class="card"><h3>Hilfsorgane</h3><p>Leber, Gallenblase und Bauchspeicheldrüse geben Stoffe in den Verdauungstrakt ab beziehungsweise stellen Verdauungssäfte bereit. Sie liegen nicht „auf dem Weg“ der Nahrung.</p></div>
+        <div class="card"><h3>Oberflächenvergrößerung</h3><p>Die innere Oberfläche des Dünndarms ist stark gefaltet und besitzt Darmzotten. Dadurch entsteht viel Fläche für die Aufnahme gelöster Stoffe.</p></div>
+      </div>
+      <div class="mini-task"><div class="task-label">Struktur &amp; Funktion</div><h3>Warum ist eine große Oberfläche des Dünndarms für die Resorption vorteilhaft?</h3><details><summary>Lösung anzeigen</summary><p>Eine größere Oberfläche ermöglicht gleichzeitig mehr Kontakt zwischen Darminhalt und aufnehmender Oberfläche. Dadurch können Stoffe wirksamer aufgenommen werden.</p></details></div>
+      <button class="mark-btn">✓ Als wiederholt markieren</button><p class="see-also">Siehe auch ...</p><div class="pager"><button data-prev>← Zurück</button><button data-next>Weiter →</button></div>
+    </section>
+
+    <section class="page" data-title="5 · Enzyme & Resorption" data-count="true">
+      <div class="kicker">Seite 5</div><h2>Vom Nährstoff zum resorbierbaren Stoff</h2>
+      <p class="lead">Viele Nahrungsbestandteile sind für die Aufnahme zu groß. Enzyme zerlegen sie in kleinere Bausteine. Diese können anschließend die Darmwand passieren.</p>
+      <div class="card goal"><h3>Lernziele</h3><ul><li>Du erklärst die Funktion von Enzymen mithilfe des Schlüssel-Schloss-Prinzips.</li><li>Du unterscheidest Verdauung und <span class="term">Resorption</span>.</li><li>Du ordnest Diffusion und Osmose vereinfacht ein.</li></ul></div>
+      <div class="grid">
+        <div class="card"><h3>Enzyme</h3><p>Enzyme sind Biokatalysatoren. Ihr aktives Zentrum passt nur zu bestimmten Substraten. Das <strong>Schlüssel-Schloss-Prinzip</strong> ist ein vereinfachtes Modell für diese Spezifität.</p></div>
+        <div class="card"><h3>Resorption</h3><p>Resorption bedeutet die Aufnahme verdauter, gelöster Stoffe aus dem Darm in Blut oder Lymphe. Verdauung und Resorption sind also nicht dasselbe.</p></div>
+      </div>
+      <div class="equation">große Nährstoffmoleküle <span class="arrow">→</span> kleinere, resorbierbare Bausteine <br><span class="small">mithilfe von Verdauungsenzymen</span></div>
+      <div class="card tip"><h3>Diffusion und Osmose</h3><p>Bei der <strong>Diffusion</strong> verteilen sich Teilchen aufgrund ihrer Eigenbewegung. <strong>Osmose</strong> bezeichnet die Diffusion von Wasser durch eine selektiv durchlässige Membran. Beide Begriffe helfen, Stoffbewegungen an Membranen zu verstehen, ohne alle Transportwege des Darms im Detail zu erklären.</p></div>
+      <div class="mini-task"><div class="task-label">Modellkritik</div><h3>Was erklärt das Schlüssel-Schloss-Modell gut – und was zeigt es nur vereinfacht?</h3><details><summary>Lösung anzeigen</summary><p>Es erklärt gut, dass Enzyme nur zu bestimmten Substraten passen. Vereinfacht ist die starre Formvorstellung: Enzyme und Substrate sind bewegliche Moleküle und können ihre Form bei der Bindung etwas verändern.</p></details></div>
+      <button class="mark-btn">✓ Als wiederholt markieren</button><p class="see-also">Siehe auch ...</p><div class="pager"><button data-prev>← Zurück</button><button data-next>Weiter →</button></div>
+    </section>
+
+    <section class="page" data-title="6 · Atmung & Gasaustausch" data-count="true">
+      <div class="kicker">Seite 6</div><h2>Sauerstoff hinein – Kohlenstoffdioxid hinaus</h2>
+      <p class="lead">Die Atmungsorgane sorgen für den Austausch von Gasen zwischen Luft und Blut. Sauerstoff wird für die Zellatmung benötigt; Kohlenstoffdioxid entsteht dabei als Stoffwechselprodukt.</p>
+      <div class="card goal"><h3>Lernziele</h3><ul><li>Du beschreibst den Weg der Atemluft.</li><li>Du erklärst den Gasaustausch in den Lungenbläschen.</li><li>Du nutzt das Struktur-Funktions-Prinzip der Oberflächenvergrößerung.</li></ul></div>
+      <div class="metab-flow">
+        <div class="metab-box"><strong>Nase / Mund</strong>Luft tritt ein</div><div class="metab-arrow">→</div>
+        <div class="metab-box"><strong>Luftröhre</strong>Luftleitung</div><div class="metab-arrow">→</div>
+        <div class="metab-box"><strong>Bronchien</strong>Verzweigung</div><div class="metab-arrow">→</div>
+        <div class="metab-box"><strong>Lungenbläschen</strong>Gasaustausch</div>
+      </div>
+      <div class="grid">
+        <div class="card"><h3>Gasaustausch</h3><p>Die Wände der Lungenbläschen und der Kapillaren sind sehr dünn. Sauerstoff diffundiert aus der Luft ins Blut; Kohlenstoffdioxid diffundiert in die Gegenrichtung.</p></div>
+        <div class="card"><h3>Große Oberfläche</h3><p>Die sehr große Zahl kleiner Lungenbläschen schafft eine große Austauschfläche. Das verbessert den Stoffaustausch zwischen Luft und Blut.</p></div>
+      </div>
+      <div class="card warm"><h3>Atmung ≠ Zellatmung</h3><p>Mit <strong>Atmung</strong> ist hier die Aufnahme und Abgabe von Atemluft samt Gasaustausch gemeint. <strong>Zellatmung</strong> ist ein chemischer Prozess in Zellen, bei dem energiereiche Stoffe unter Nutzung von Sauerstoff abgebaut werden.</p></div>
+      <div class="mini-task"><div class="task-label">Erklären</div><h3>Warum steigen Atemfrequenz und Atemtiefe bei körperlicher Belastung meist an?</h3><details><summary>Lösung anzeigen</summary><p>Aktive Zellen benötigen mehr Energie. Dadurch läuft mehr Zellatmung ab, wofür mehr Sauerstoff benötigt und mehr Kohlenstoffdioxid abgegeben wird. Die Atmung passt sich diesem erhöhten Bedarf an.</p></details></div>
+      <button class="mark-btn">✓ Als wiederholt markieren</button><p class="see-also">Siehe auch ...</p><div class="pager"><button data-prev>← Zurück</button><button data-next>Weiter →</button></div>
+    </section>
+
+    <section class="page" data-title="7 · Herz & Blutgefäße" data-count="true">
+      <div class="kicker">Seite 7</div><h2>Das Transportsystem des Körpers</h2>
+      <p class="lead">Das Herz hält das Blut in Bewegung. Blutgefäße verteilen Stoffe im Körper und verbinden Organe mit den Geweben.</p>
+      <div class="card goal"><h3>Lernziele</h3><ul><li>Du beschreibst die Grundaufgabe des Herzens und des Blutkreislaufs.</li><li>Du unterscheidest Arterien, Venen und Kapillaren nach ihrer Funktion.</li><li>Du erklärst Puls und Blutdruck als messbare Größen des Kreislaufs.</li></ul></div>
+      <div class="vessel-row">
+        <div class="vessel artery"><h4>Arterien</h4><p>führen Blut <strong>vom Herzen weg</strong>; ihre Wände sind an den höheren Druck angepasst.</p></div>
+        <div class="vessel vein"><h4>Venen</h4><p>führen Blut <strong>zum Herzen hin</strong>; viele Venen besitzen Klappen, die den Rückstrom unterstützen.</p></div>
+        <div class="vessel capillary"><h4>Kapillaren</h4><p>sind sehr feinwandige Gefäße. Hier findet ein großer Teil des Stoffaustauschs zwischen Blut und Gewebe statt.</p></div>
+      </div>
+      <div class="card warn"><h3>Häufige Fehlvorstellung</h3><p>„Arterie = sauerstoffreich“ und „Vene = sauerstoffarm“ stimmt nicht immer. Entscheidend ist die <strong>Flussrichtung relativ zum Herzen</strong>. Im Lungenkreislauf ist es bezüglich des Sauerstoffgehalts umgekehrt.</p></div>
+      <div class="mini-task"><div class="task-label">Auswerten</div><h3>Eine Person hat in Ruhe 68 Pulsschläge pro Minute und direkt nach Belastung 132. Formuliere eine sachgerechte Aussage.</h3><details><summary>Lösung anzeigen</summary><p>Die Herzfrequenz ist nach der Belastung deutlich erhöht. Das passt dazu, dass der Körper bei Belastung mehr Stoffe und Gase transportieren muss. Aus diesen beiden Einzelwerten allein lässt sich aber keine allgemeine Aussage über Fitness oder Gesundheit ableiten.</p></details></div>
+      <button class="mark-btn">✓ Als wiederholt markieren</button><p class="see-also">Siehe auch ...</p><div class="pager"><button data-prev>← Zurück</button><button data-next>Weiter →</button></div>
+    </section>
+
+    <section class="page" data-title="8 · Blut & Blutgruppen" data-count="true">
+      <div class="kicker">Seite 8</div><h2>Blut – mehr als eine rote Flüssigkeit</h2>
+      <p class="lead">Blut transportiert Stoffe, beteiligt sich an der Abwehr und verschließt Verletzungen. Seine Bestandteile erfüllen unterschiedliche Aufgaben.</p>
+      <div class="card goal"><h3>Lernziele</h3><ul><li>Du nennst wichtige Blutbestandteile und ihre Funktionen.</li><li>Du erklärst das AB0-System vereinfacht mit Antigenen und Antikörpern.</li><li>Du weißt, dass auch der Rhesusfaktor bei Blutübertragungen wichtig ist.</li></ul></div>
+      <div class="blood-grid">
+        <div class="blood-card"><h4>Blutplasma</h4><p>flüssiger Anteil; transportiert unter anderem gelöste Stoffe, Hormone, Nährstoffe und Stoffwechselprodukte</p></div>
+        <div class="blood-card"><h4>Rote Blutkörperchen</h4><p>transportieren vor allem Sauerstoff mithilfe des roten Blutfarbstoffs Hämoglobin</p></div>
+        <div class="blood-card"><h4>Weiße Blutkörperchen</h4><p>sind an der Immunabwehr beteiligt</p></div>
+        <div class="blood-card"><h4>Blutplättchen</h4><p>sind wichtig für Blutgerinnung und Wundverschluss</p></div>
+      </div>
+      <div class="card"><h3>AB0-System</h3><p>Auf roten Blutkörperchen können die <span class="term">Antigene</span> A und/oder B vorkommen. Im Blutplasma befinden sich passende <span class="term">Antikörper</span> gegen fremde Antigene. Treffen unverträgliche Kombinationen zusammen, können rote Blutkörperchen verklumpen. Deshalb muss die Blutgruppe bei Transfusionen sorgfältig berücksichtigt werden.</p></div>
+      <div class="card tip"><h3>Rhesussystem</h3><p>Zusätzlich zum AB0-System ist unter anderem der Rhesusfaktor wichtig. Für eine reale Bluttransfusion werden mehrere Merkmale geprüft; die vereinfachte Schulregel ersetzt keine medizinische Verträglichkeitsprüfung.</p></div>
+      <div class="mini-task"><div class="task-label">Erklären</div><h3>Warum reicht die Aussage „Beide Personen haben Blutgruppe A“ für eine sichere Transfusion noch nicht vollständig aus?</h3><details><summary>Lösung anzeigen</summary><p>Weil zusätzlich weitere Blutgruppenmerkmale wie der Rhesusfaktor und in der Medizin weitere Systeme beachtet werden. Außerdem wird die Verträglichkeit vor einer Transfusion geprüft.</p></details></div>
+      <button class="mark-btn">✓ Als wiederholt markieren</button><p class="see-also">Siehe auch ...</p><div class="pager"><button data-prev>← Zurück</button><button data-next>Weiter →</button></div>
+    </section>
+
+    <section class="page" data-title="9 · Organsysteme vernetzen" data-count="true">
+      <div class="kicker">Seite 9</div><h2>Alles hängt zusammen</h2>
+      <p class="lead">Verdauung, Atmung und Kreislauf lassen sich nicht sinnvoll getrennt betrachten. Erst ihr Zusammenspiel versorgt Zellen mit den Stoffen, die sie benötigen.</p>
+      <div class="card goal"><h3>Lernziele</h3><ul><li>Du verknüpfst Verdauung, Atmung, Blutkreislauf und Zellatmung.</li><li>Du erklärst Stoff- und Energieflüsse auf mehreren Systemebenen.</li><li>Du wertest einfache Untersuchungen zu Puls und Atmung aus.</li></ul></div>
+      <div class="system-map"><div class="node">Dünndarm<br><span class="small">Nährstoffbausteine ins Blut</span></div><div class="sarr">→</div><div class="node">Blutkreislauf<br><span class="small">Transport zu den Zellen</span></div><div class="sarr">←</div><div class="node">Lunge<br><span class="small">Sauerstoff ins Blut</span></div></div>
+      <div class="equation">Glucose + Sauerstoff <span class="arrow">→</span> Kohlenstoffdioxid + Wasser <br><span class="small">vereinfachte Wortgleichung der Zellatmung; dabei wird nutzbare Energie bereitgestellt</span></div>
+      <div class="grid">
+        <div class="card"><h3>Bei Belastung</h3><p>Arbeitende Muskeln benötigen mehr Energie. Herzschlag und Atmung passen sich an, sodass mehr Sauerstoff und Nährstoffe transportiert und mehr Kohlenstoffdioxid abtransportiert werden können.</p></div>
+        <div class="card"><h3>Experimentell untersuchen</h3><p>Puls, Atemfrequenz oder Atembewegungen können vor und nach einer Belastung gemessen werden. Ein guter Versuchsplan hält Belastungsdauer und Messmethode möglichst konstant.</p></div>
+      </div>
+      <div class="card warm"><h3>Gesunderhaltung</h3><p>Eine ausgewogene Ernährung, regelmäßige Bewegung und der Verzicht auf schädliche Stoffe können Herz-Kreislauf- und Atmungssystem unterstützen. Biologische Bewertung bedeutet dabei, Maßnahmen anhand nachvollziehbarer Kriterien zu beurteilen – nicht mit einfachen Etiketten wie „gut“ oder „schlecht“.</p></div>
+      <div class="mini-task"><div class="task-label">Systemdenken</div><h3>Erkläre den Weg eines Sauerstoffmoleküls aus der Einatemluft bis zu einer Muskelzelle.</h3><details><summary>Lösung anzeigen</summary><p>Es gelangt über die Atemwege in die Lungenbläschen, diffundiert dort ins Blut, wird im Blut transportiert und über den Kreislauf zu Kapillaren im Muskel gebracht. Von dort gelangt Sauerstoff zu den Muskelzellen und kann für die Zellatmung genutzt werden.</p></details></div>
+      <div class="mini-task"><div class="task-label">Planen</div><h3>Du willst den Einfluss einer Minute Kniebeugen auf den Puls untersuchen. Nenne drei Punkte für einen fairen Versuchsplan.</h3><details><summary>Lösung anzeigen</summary><p>Zum Beispiel: Puls vor und nach der Belastung mit derselben Methode und gleich lange messen; für alle Personen gleiche Belastungsdauer beziehungsweise gleiche Übung; gleiche Zeitspanne zwischen Belastungsende und Messbeginn; mehrere Messungen durchführen und vergleichen.</p></details></div>
+      <button class="mark-btn">✓ Als wiederholt markieren</button><p class="see-also">Siehe auch ...</p><div class="pager"><button data-prev>← Zurück</button><button data-next>Weiter →</button></div>
+    </section>
+
+    <section class="page selftest" data-title="10 · Selbsttest" data-count="true">
+      <div class="kicker">Seite 10</div><h2>Selbsttest: Stoffwechsel verstanden?</h2>
+      <p class="lead">Bearbeite die Aufgaben möglichst ohne zurückzublättern. Öffne die Lösungen erst anschließend.</p>
+      <div class="card goal"><h3>Checkliste</h3><div class="checklist">
+        <label><input type="checkbox"> Ich kann Stoffwechsel von Verdauung unterscheiden.</label>
+        <label><input type="checkbox"> Ich kann Kohlenhydrate, Fette und Proteine als Nährstoffgruppen einordnen.</label>
+        <label><input type="checkbox"> Ich kann Nährstoffnachweise beschreiben und Beobachtung von Deutung trennen.</label>
+        <label><input type="checkbox"> Ich kann den Weg der Nahrung und die Aufgaben wichtiger Verdauungsorgane erklären.</label>
+        <label><input type="checkbox"> Ich kann Enzymwirkung und Resorption erklären.</label>
+        <label><input type="checkbox"> Ich kann den Gasaustausch in der Lunge beschreiben.</label>
+        <label><input type="checkbox"> Ich kann Arterien, Venen und Kapillaren unterscheiden.</label>
+        <label><input type="checkbox"> Ich kann wichtige Blutbestandteile und Grundlagen des AB0-Systems erläutern.</label>
+        <label><input type="checkbox"> Ich kann Verdauung, Atmung, Kreislauf und Zellatmung vernetzen.</label>
+      </div></div>
+      <div class="card">
+        <div class="q"><strong>1.</strong> Was versteht man unter Stoffwechsel?<details><summary>Lösung</summary><p>Die Gesamtheit der biochemischen Vorgänge im Körper, bei denen Stoffe aufgenommen, umgewandelt, transportiert, aufgebaut, abgebaut oder abgegeben werden.</p></details></div>
+        <div class="q"><strong>2.</strong> Nenne die drei wichtigsten energieliefernden Nährstoffgruppen.<details><summary>Lösung</summary><p>Kohlenhydrate, Fette und Proteine/Eiweiße.</p></details></div>
+        <div class="q"><strong>3.</strong> Was ist der Unterschied zwischen Beobachtung und Deutung bei einem Nährstoffnachweis?<details><summary>Lösung</summary><p>Die Beobachtung beschreibt nur das Wahrgenommene, z. B. eine Farbänderung. Die Deutung schließt daraus auf das Vorhandensein oder Fehlen eines Stoffes.</p></details></div>
+        <div class="q"><strong>4.</strong> Warum besitzt der Dünndarm eine stark vergrößerte Oberfläche?<details><summary>Lösung</summary><p>Eine große Oberfläche erleichtert die Aufnahme vieler gelöster Verdauungsprodukte in Blut oder Lymphe.</p></details></div>
+        <div class="q"><strong>5.</strong> Was ist die Aufgabe von Enzymen bei der Verdauung?<details><summary>Lösung</summary><p>Sie beschleunigen die Zerlegung bestimmter Nährstoffe in kleinere, resorbierbare Bausteine.</p></details></div>
+        <div class="q"><strong>6.</strong> Wo findet der Gasaustausch der Lunge statt und welcher Prozess spielt dabei eine wichtige Rolle?<details><summary>Lösung</summary><p>In den Lungenbläschen an den angrenzenden Kapillaren; wichtig ist die Diffusion.</p></details></div>
+        <div class="q"><strong>7.</strong> Wie unterscheiden sich Arterien und Venen grundsätzlich?<details><summary>Lösung</summary><p>Arterien führen Blut vom Herzen weg, Venen zum Herzen hin.</p></details></div>
+        <div class="q"><strong>8.</strong> Nenne zwei Blutbestandteile und je eine Funktion.<details><summary>Lösung</summary><p>Zum Beispiel rote Blutkörperchen: Sauerstofftransport; weiße Blutkörperchen: Abwehr; Blutplättchen: Gerinnung; Plasma: Stofftransport. Zwei richtige Kombinationen genügen.</p></details></div>
+        <div class="q"><strong>9.</strong> Welche Bedeutung haben Antigene und Antikörper im AB0-System?<details><summary>Lösung</summary><p>Antigene A und/oder B können auf roten Blutkörperchen vorkommen; im Plasma befinden sich Antikörper gegen jeweils fremde Antigene. Unverträgliche Kombinationen können zur Verklumpung führen.</p></details></div>
+        <div class="q"><strong>10.</strong> Warum steigen Puls und Atemfrequenz bei körperlicher Belastung meist gemeinsam an?<details><summary>Lösung</summary><p>Aktive Zellen benötigen mehr Energie. Dafür werden mehr Sauerstoff und Nährstoffe transportiert und mehr Kohlenstoffdioxid abgeführt. Atmung und Kreislauf passen sich an diesen erhöhten Stoffumsatz an.</p></details></div>
+      </div>
+      <div class="card warm"><h3>Fachbegriffe auf einen Blick</h3><div class="pillrow"><span class="pill">Stoffwechsel</span><span class="pill">Assimilation</span><span class="pill">Dissimilation</span><span class="pill">heterotroph</span><span class="pill">autotroph</span><span class="pill">Kohlenhydrate</span><span class="pill">Fette</span><span class="pill">Proteine</span><span class="pill">Verdauung</span><span class="pill">Resorption</span><span class="pill">Enzym</span><span class="pill">Schlüssel-Schloss-Prinzip</span><span class="pill">Diffusion</span><span class="pill">Osmose</span><span class="pill">Arterie</span><span class="pill">Vene</span><span class="pill">Kapillare</span><span class="pill">Blutkreislauf</span><span class="pill">Antigen</span><span class="pill">Antikörper</span><span class="pill">AB0-System</span><span class="pill">Zellatmung</span></div></div>
+      <button class="mark-btn">✓ Als wiederholt markieren</button><p class="see-also">Siehe auch ...</p><div class="pager"><button data-prev>← Zurück</button><button disabled>Ende ✓</button></div>
+    </section>
+  </main>
+</div>
+<script>
+(() => {
+  const pages = [...document.querySelectorAll('.page')];
+  const navList = document.getElementById('navList');
+  const mobileSelect = document.getElementById('mobileSelect');
+  const countedPages = pages.filter(p => p.dataset.count === 'true');
+  const key = 'biologie8_stoffwechsel_des_menschen_fortschritt_v1';
+  let done = {};
+  try { done = JSON.parse(localStorage.getItem(key) || '{}'); } catch(e) { done = {}; }
+
+  pages.forEach((p,i) => {
+    const b = document.createElement('button');
+    b.className = 'nav-btn'; b.dataset.index = i;
+    const num = i === 0 ? '⌂' : i;
+    b.innerHTML = `<span class="nav-num">${num}</span><span class="nav-text">${p.dataset.title}</span>`;
+    b.addEventListener('click', () => show(i));
+    navList.appendChild(b);
+    const o = document.createElement('option'); o.value=i; o.textContent=(i===0?'Start':p.dataset.title); mobileSelect.appendChild(o);
+  });
+  mobileSelect.addEventListener('change', e => show(Number(e.target.value)));
+
+  function updateProgress(){
+    const complete = countedPages.filter((p) => done[p.dataset.title]).length;
+    document.getElementById('progressText').textContent = `${complete} / ${countedPages.length}`;
+    document.getElementById('progressBar').style.width = `${100*complete/countedPages.length}%`;
+    [...navList.children].forEach((b,i) => {
+      const p=pages[i]; b.classList.toggle('done', !!done[p.dataset.title]);
+    });
+    pages.forEach(p => {
+      const btn=p.querySelector('.mark-btn'); if(!btn) return;
+      const yes=!!done[p.dataset.title]; btn.classList.toggle('done',yes); btn.textContent=yes?'✓ Wiederholt':'✓ Als wiederholt markieren';
+    });
+  }
+  function show(i){
+    i=Math.max(0,Math.min(pages.length-1,i));
+    pages.forEach((p,j)=>p.classList.toggle('active',j===i));
+    [...navList.children].forEach((b,j)=>b.classList.toggle('active',j===i));
+    mobileSelect.value=i;
+    history.replaceState(null,'',`#seite-${i}`);
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  pages.forEach((p,i)=>{
+    p.querySelectorAll('[data-next]').forEach(b=>b.addEventListener('click',()=>show(i+1)));
+    p.querySelectorAll('[data-prev]').forEach(b=>b.addEventListener('click',()=>show(i-1)));
+    const mark=p.querySelector('.mark-btn'); if(mark) mark.addEventListener('click',()=>{
+      done[p.dataset.title]=!done[p.dataset.title];
+      try{localStorage.setItem(key,JSON.stringify(done));}catch(e){}
+      updateProgress();
+    });
+  });
+  const match=location.hash.match(/seite-(\d+)/); show(match?Number(match[1]):0); updateProgress();
+})();
+</script>
+</body>
+</html>
